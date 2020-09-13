@@ -119,7 +119,8 @@ export default class AddFilterDialog extends Component {
 		};
 		const input = {};
 		const _item = this.props.getItem(this.props.item);
-		const item = _item.item;
+		// const item = _item.item;
+		const item = _item;
 		console.log("handleAddFilter item:", item, ",this.props:", this.props, ",_item:", _item);
 		const itemPath = this.props.item.split(':');
 		newFilter.track = itemPath[0];
