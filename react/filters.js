@@ -66,7 +66,7 @@ export default {
 		}]
 	},{
 		id: 'fadeInBrightness',
-		title: '影响淡入',
+		title: '画面淡入',
 		in: [{
 			id: 'duration',
 			title: '持续时长',
@@ -82,7 +82,7 @@ export default {
 		}]
 	},{
 		id: 'fadeOutBrightness',
-		title: '影像淡出',
+		title: '画面淡出',
 		in: [{
 			id: 'duration',
 			title: '持续时长',

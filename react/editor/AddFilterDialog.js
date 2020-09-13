@@ -107,6 +107,7 @@ export default class AddFilterDialog extends Component {
 		event.preventDefault();
 
 		let filter = AddFilterDialog.getFilter(this.state.filter);
+		console.log("handleAddFilter filter:", filter, ",this.state.filter:", this.state.filter);
 		if (filter.in[0].id === 'duration' && !timeManager.isValidDuration(this.state.level)) {
 			alert('持续时间必须是无限的, 格式 00:00:00,000');
 			return;
