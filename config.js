@@ -5,24 +5,28 @@
 
 exports.server = {
 	port: 8080,
-	host: 'localhost',
+	host: '0.0.0.0',
 
 	get serverUrl() {
-		return `http://${this.host}:${this.port}`;
+		// return `http://${this.host}:${this.port}`;
+		return `http://ubuntu1:${this.port}`;
 	},
 	get apiUrl() {
-		return `http://${this.host}:${this.port}/api`;
+		// return `http://${this.host}:${this.port}/api`;
+		return `http://ubuntu1:${this.port}/api`
 	},
 };
 
 exports.config = {
-	emailServer: 'smtp.stud.fit.vutbr.cz',
+	emailServer: 'smtp.139.com',
 	emailPort: 465,
-	emailUser: 'xkudla15',
-	emailPasswd: '*****',
-	adminEmail: 'xkudla15@stud.fit.vutbr.cz',
+	emailUser: 'elvis_su',
+	emailPasswd: 'sushaoyu!0103',
+	adminEmail: 'elvis_su@139.com',
 
 	projectPath: 'WORKER',
+	projectIDlength: 32,
+	fileIDlength: 21,
 
 	declareXML: '<?xml version="1.0" encoding="UTF-8"?>\n<!DOCTYPE mlt SYSTEM "https://raw.githubusercontent.com/mltframework/mlt/master/src/modules/xml/mlt-xml.dtd">',
 

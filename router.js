@@ -11,10 +11,13 @@ const mainController = require('./controllers/mainController');
 const apiController = require('./controllers/apiController');
 const errorController = require('./controllers/errorController');
 
+// Vis timeline resources
+router.get('/vis.css', (req, res) => res.sendFile(__dirname + '/node_modules/vis-timeline/dist/vis-timeline-graph2d.min.css'));
 // Homepage route
 router.get('/', mainController.main);
 router.get('/project/:projectID', mainController.project);
 router.get('/project/:projectID/output.mp4', mainController.finished);
+router.get('/project/:projectID/file/:fileID', mainController.resource);
 
 // API route
 router.all('/api', apiController.default);
