@@ -20,7 +20,7 @@ export default class Preview extends Component {
 
 		return (
 			<div id='preview'>
-				<h3><i className="material-icons" aria-hidden={true}> movie_filter </i>Náhled</h3>
+				<h3><i className="material-icons" aria-hidden={true}> movie_filter </i>概述(预览)</h3>
 				<div id='preview-player'>
 					{typeof this.props.items.video !== 'undefined' && Object.keys(this.props.items.video).map(key =>
 						<PreviewTrack
@@ -34,22 +34,22 @@ export default class Preview extends Component {
 				</div>
 				<br/>
 				<div className="prev-toolbar">
-					<button onClick={this.stop} className="no-border" title="Zastavit přehrávání">
+					<button onClick={this.stop} className="no-border" title="停止播放">
 						<i className="material-icons" aria-hidden="true">stop</i>
 					</button>
 					{this.props.playing ?
-						<button onClick={this.props.pause} title="Pozastavit přehrávání">
+						<button onClick={this.props.pause} title="暂停播放">
 							<i className="material-icons" aria-hidden="true">pause</i>
 						</button>
 						:
-						<button onClick={this.props.play} title="Pokračovat v přehrávání">
+						<button onClick={this.props.play} title="继续播放">
 							<i className="material-icons" aria-hidden="true">play_arrow</i>
 						</button>
 					}
-					<button disabled title="Předchozí událost">
+					<button disabled title="前一帧">
 						<i className="material-icons" aria-hidden="true">skip_previous</i>
 					</button>
-					<button disabled title="Následující událost">
+					<button disabled title="下一帧">
 						<i className="material-icons" aria-hidden="true">skip_next</i>
 					</button>
 				</div>

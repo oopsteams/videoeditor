@@ -150,11 +150,12 @@ export default class Timeline extends Component {
 	render() {
 		return (
 			<>
-				<button onClick={this.buttonFilter}><i className="material-icons" aria-hidden="true">flare</i>Filtry</button>
+				<button onClick={this.buttonFilter}><i className="material-icons" aria-hidden="true">flare</i>滤镜</button>
 				{/*<button><i className="material-icons" aria-hidden="true">photo_filter</i>Přidat přechod</button>*/}
-				<button onClick={this.buttonSplit}><i className="material-icons" aria-hidden="true">flip</i>Rozdělit v bodě</button>
+				<button onClick={this.buttonSplit}><i className="material-icons" aria-hidden="true">flip</i>分割点</button>
+				<button onClick={this.newButtonSplit}><i className="material-icons" aria-hidden="true">flip</i>分割点(new)</button>
 				{/*<button><i className="material-icons" aria-hidden="true">menu</i>Vlastnosti</button>*/}
-				<button onClick={this.buttonDel}><i className="material-icons" aria-hidden="true">remove</i>Odebrat</button>
+				<button onClick={this.buttonDel}><i className="material-icons" aria-hidden="true">remove</i>删除</button>
 				<div id="time">{TimelineModel.dateToString(this.props.time)} / {this.state.duration}</div>
 				<div id="timeline"/>
 				{this.state.showAddFilterDialog && <AddFilterDialog
@@ -182,7 +183,9 @@ export default class Timeline extends Component {
 	closeAddFilterDialog() {
 		this.setState({ showAddFilterDialog: false });
 	}
-
+	newButtonSplit(){
+		console.log("newButtonSplit !!!!!!!!!!!");
+	}
 	buttonSplit() {
 		if (this.state.selectedItems.length !== 1) return;
 
