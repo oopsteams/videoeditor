@@ -120,6 +120,7 @@ export default class AddFilterDialog extends Component {
 		const input = {};
 
 		const item = this.props.getItem(this.props.item).item;
+		console.log("handleAddFilter item:", item);
 		const itemPath = this.props.item.split(':');
 		newFilter.track = itemPath[0];
 		newFilter.item = Number(itemPath[1]);
