@@ -20,7 +20,7 @@ export default class SourcesTableRow extends Component {
 				</td>
 				<td>
 					{this.item.name}<br/>
-					{this.item.duration !== null && <small>Délka: {this.item.duration}</small>}
+					{this.item.duration !== null && <small>时长: {this.item.duration}</small>}
 				</td>
 				<td className="column-right">
 					<button onClick={() => this.props.onInsert(this.item.id)}><i className="material-icons" aria-hidden="true">control_point</i></button>

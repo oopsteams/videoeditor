@@ -15,12 +15,12 @@ export default class LoadingDialog extends Component {
 			<div>
 				<Modal
 					isOpen={true}
-					contentLabel="Načítání"
+					contentLabel="加载"
 					className={'modal'}
 					overlayClassName={'overlay'}
 				>
 
-					<h2>Načítání videoeditoru</h2>
+					<h2>加载视频编辑器</h2>
 					<div>
 						<div className="loader"/>
 					</div>

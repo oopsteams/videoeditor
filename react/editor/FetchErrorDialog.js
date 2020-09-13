@@ -16,16 +16,16 @@ export default class FetchErrorDialog extends Component {
 			<div>
 				<Modal
 					isOpen={true}
-					contentLabel="Chyba komunikace se serverem"
+					contentLabel="与服务器通信时出错"
 					className={'modal'}
 					overlayClassName={'overlay'}
 				>
 
-					<h2 className={'error'}><img src={'/icons/error.svg'} alt={'error'}/>Chyba komunikace se serverem</h2>
+					<h2 className={'error'}><img src={'/icons/error.svg'} alt={'error'}/>与服务器通信时出错</h2>
 					<div>
 						<i>{this.props.msg}</i>
-						<p>Opakujte akci nebo obnovte stránku v prohlížeči.</p>
-						<button onClick={() => this.props.onClose()}>Zavřít</button>
+						<p>在浏览器中重复操作或刷新页面.</p>
+						<button onClick={() => this.props.onClose()}>关闭</button>
 					</div>
 				</Modal>
 			</div>

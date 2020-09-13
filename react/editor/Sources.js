@@ -46,7 +46,7 @@ export default class Sources extends Component {
 			if (duration === null) return;
 
 			if (!timeManager.isValidDuration(duration)) {
-				alert('Zadejte nenulovou délku ve formátu HH:MM:SS,sss');
+				alert('在格式中输入非零长度 HH:MM:SS,sss');
 				this.putResource(id);
 				return;
 			}

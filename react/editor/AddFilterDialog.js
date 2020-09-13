@@ -36,7 +36,7 @@ export default class AddFilterDialog extends Component {
 			<div>
 				<Modal
 					isOpen={true}
-					contentLabel="Přidat nový filtr"
+					contentLabel="添加新滤镜"
 					className={'modal'}
 					overlayClassName={'overlay'}
 					onRequestClose={this.handleCloseDialog}
@@ -45,7 +45,7 @@ export default class AddFilterDialog extends Component {
 					<div>
 						<table>
 							<tbody>
-								{item.filters.length === 0 && <tr><td>žádné filtry</td></tr>}
+								{item.filters.length === 0 && <tr><td>无滤镜</td></tr>}
 								{item.filters.map(filter =>
 									<tr key={filter.service}>
 										<td>{AddFilterDialog.getFilter(filter.service).title}</td>
@@ -55,7 +55,7 @@ export default class AddFilterDialog extends Component {
 							</tbody>
 						</table>
 					</div>
-					<h3>Přidat nový filtr</h3>
+					<h3>添加新滤镜</h3>
 					<div>
 						<form onSubmit={this.handleAddFilter}>
 							<label htmlFor={'filter'}>Filtr: </label>
@@ -74,12 +74,12 @@ export default class AddFilterDialog extends Component {
 							{AddFilterDialog.getFilter(this.state.filter).in[0].id === 'duration' &&
 								<>
 									<label htmlFor={'duration'}>Doba trvání: </label>
-									<input type={'text'} name={'duration'} defaultValue={'00:00:00,000'} required={true} pattern={'^\\d{2,}:\\d{2}:\\d{2},\\d{3}$'} title={'Doba trvání ve formátu 00:00:00,000'} onChange={this.handleLevelChange}/>
+									<input type={'text'} name={'duration'} defaultValue={'00:00:00,000'} required={true} pattern={'^\\d{2,}:\\d{2}:\\d{2},\\d{3}$'} title={'格式中的持续时间 00:00:00,000'} onChange={this.handleLevelChange}/>
 								</>
 							}
 							<br/>
-							<input type={'submit'} value={'Přidat filtr'}/>
-							<button onClick={this.handleCloseDialog}>Zavřít</button>
+							<input type={'submit'} value={'添加滤镜'}/>
+							<button onClick={this.handleCloseDialog}>关闭</button>
 						</form>
 					</div>
 				</Modal>
@@ -108,7 +108,7 @@ export default class AddFilterDialog extends Component {
 
 		let filter = AddFilterDialog.getFilter(this.state.filter);
 		if (filter.in[0].id === 'duration' && !timeManager.isValidDuration(this.state.level)) {
-			alert('Délka trvání musí být nenulová, ve formátu 00:00:00,000');
+			alert('持续时间必须是无限的, 格式 00:00:00,000');
 			return;
 		}
 

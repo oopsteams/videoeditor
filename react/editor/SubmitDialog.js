@@ -29,23 +29,23 @@ export default class SubmitDialog extends Component {
 			<div>
 				<Modal
 					isOpen={true}
-					contentLabel="Dokončení projektu"
+					contentLabel="项目完成"
 					className={'modal'}
 					overlayClassName={'overlay'}
 					onRequestClose={this.handleCloseDialog}
 				>
 
-					<h2>Dokončení projektu</h2>
+					<h2>项目完成</h2>
 					<div>
 						<form onSubmit={this.handleSumbitDialog}>
-							<label htmlFor={'email'}>Emailová adresa: </label>
+							<label htmlFor={'email'}>电子邮件: </label>
 							<input type={'email'} name={'email'} required={true} size={30} value={this.state.email} onChange={this.handleEmailChanged}/>
 							<br/>
-							Doba zpracování projektu závisí na jeho délce.<br/>
-							Zadejte email a my vám zašleme odkaz na výsledné video hned, jak bude zpracované.
+							项目的持续时间取决于它的持续时间.<br/>
+							输入一封电子邮件，我们将在处理后立即向您发送指向结果视频的链接.
 							<br/>
-							<input type={'submit'} className={'success'} value={'Zahájit'}/>
-							<button onClick={this.handleCloseDialog}>Storno</button>
+							<input type={'submit'} className={'success'} value={'开始'}/>
+							<button onClick={this.handleCloseDialog}>取消</button>
 						</form>
 					</div>
 				</Modal>
