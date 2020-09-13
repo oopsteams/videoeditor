@@ -9,10 +9,10 @@ export default {
 
 	videoFilters: [{
 		id: 'brightness',
-		title: 'Jas',
+		title: '亮度',
 		in: [{
 			id: 'level',
-			title: 'Úroveň',
+			title: '级别',
 			type: 'int',
 			value: 100,
 			min: 0,
@@ -27,10 +27,10 @@ export default {
 		}],
 	},{
 		id: 'lift_gamma_gain',
-		title: 'Kontrast',
+		title: '对比度',
 		in: [{
 			id: 'level',
-			title: 'Úroveň',
+			title: '级别',
 			type: 'int',
 			value: 100,
 			min: 0,
@@ -66,10 +66,10 @@ export default {
 		}]
 	},{
 		id: 'fadeInBrightness',
-		title: 'Roztmívat obraz',
+		title: '影响淡入',
 		in: [{
 			id: 'duration',
-			title: 'Doba trvání',
+			title: '持续时长',
 			type: 'duration',
 			value: '00:00:00,000',
 		}],
@@ -82,10 +82,10 @@ export default {
 		}]
 	},{
 		id: 'fadeOutBrightness',
-		title: 'Zatmívat obraz',
+		title: '影像淡出',
 		in: [{
 			id: 'duration',
-			title: 'Doba trvání',
+			title: '持续时长',
 			type: 'duration',
 			value: '00:00:00,000',
 		}],
@@ -100,10 +100,10 @@ export default {
 
 	audioFilters: [{
 		id: 'fadeInVolume',
-		title: 'Postupně zesílit zvuk',
+		title: '音频淡入',
 		in: [{
 			id: 'duration',
-			title: 'Doba trvání',
+			title: '持续时长',
 			type: 'duration',
 			value: '00:00:00,000',
 		}],
@@ -113,10 +113,10 @@ export default {
 		}]
 	},{
 		id: 'fadeOutVolume',
-		title: 'Postupně zeslabit zvuk',
+		title: '音频淡出',
 		in: [{
 			id: 'duration',
-			title: 'Doba trvání',
+			title: '持续时长',
 			type: 'duration',
 			value: '00:00:00,000',
 		}],

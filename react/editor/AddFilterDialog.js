@@ -41,7 +41,7 @@ export default class AddFilterDialog extends Component {
 					overlayClassName={'overlay'}
 					onRequestClose={this.handleCloseDialog}
 				>
-					<h2>Filtry</h2>
+					<h2>滤镜</h2>
 					<div>
 						<table>
 							<tbody>
@@ -58,7 +58,7 @@ export default class AddFilterDialog extends Component {
 					<h3>添加新滤镜</h3>
 					<div>
 						<form onSubmit={this.handleAddFilter}>
-							<label htmlFor={'filter'}>Filtr: </label>
+							<label htmlFor={'filter'}>滤镜: </label>
 							<select name={'filter'} onChange={this.handleFilterChange}>
 								{filters.videoFilters.map((filter) => <option value={filter.id} key={filter.id}>{filter.title}</option>)}
 								{filters.audioFilters.map((filter) => <option value={filter.id} key={filter.id}>{filter.title}</option>)}
@@ -66,14 +66,14 @@ export default class AddFilterDialog extends Component {
 							<br/>
 							{AddFilterDialog.getFilter(this.state.filter).in[0].id === 'level' &&
 								<>
-									<label htmlFor={'level'}>Úroveň: </label>
+									<label htmlFor={'level'}>级别: </label>
 									<input type={'range'} name={'level'} min={0} max={200} defaultValue={100} onChange={this.handleLevelChange}/>
 									<span> {this.state.level} %</span>
 								</>
 							}
 							{AddFilterDialog.getFilter(this.state.filter).in[0].id === 'duration' &&
 								<>
-									<label htmlFor={'duration'}>Doba trvání: </label>
+									<label htmlFor={'duration'}>持续时长: </label>
 									<input type={'text'} name={'duration'} defaultValue={'00:00:00,000'} required={true} pattern={'^\\d{2,}:\\d{2}:\\d{2},\\d{3}$'} title={'格式中的持续时间 00:00:00,000'} onChange={this.handleLevelChange}/>
 								</>
 							}
