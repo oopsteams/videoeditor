@@ -107,7 +107,7 @@
 					container.appendChild( renderer.domElement );
 	
 					video = document.getElementById( 'video' );
-					// video.play();
+					video.play();
 					video.addEventListener('play', function() {
 						this.currentTime = 3;
 					}, false);
@@ -194,7 +194,7 @@
 						console.log("querySelector canvas!");
 						cut_canvas(canvas);
 					};
-	
+					window.three_con = container;
 				}
 	
 				function onWindowResize() {
@@ -310,7 +310,6 @@
 					        });
 				}
 				window.cut_canvas = cut_canvas;
-				window.three_con = container;
 				//////////////////////////////////////////////////////cut canvas end
 				function render() {
 	
