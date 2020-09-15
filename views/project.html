@@ -188,7 +188,7 @@
 	
 					window.addEventListener( 'resize', onWindowResize, false );
 					
-					scene.onAfterRender = function(renderer, scene, camera, geometry, material, group){
+					scene.onAfterRender = function(_renderer, scene, camera, geometry, material, group){
 						let canvas = renderer.domElement;
 						cut_canvas(canvas);
 					};
