@@ -29,7 +29,7 @@ server.use('/', router);
 server.use(express.static('public'));
 
 //ws
-let io = require('socket.io').listen(3000);
+let io = require('socket.io')();
 /**
  * SOCKET.IO CONFIGURATION
  */
@@ -105,6 +105,7 @@ io.sockets.on('connection', function (socket) {
 	});
 });
 
+io.listen(3000);
 
 server.listen(config.port, config.host, () => {
 	log.info('Express listening on port', config.port);
