@@ -190,8 +190,9 @@
 					
 					scene.onAfterRender = function(_renderer, scene, camera, geometry, material, group){
 						// let canvas = renderer.domElement;
-						let canvas = container.querySelector('canvas');
-						console.log("querySelector canvas!");
+						// let canvas = container.querySelector('canvas');
+						// console.log("querySelector canvas!");
+						let canvas = window.rend.domElement;
 						cut_canvas(canvas);
 					};
 					window.three_con = container;
@@ -363,6 +364,7 @@
 					
 					renderer.clear();
 					composer.render();
+					window.rend = renderer;
 				}
 	
 	
