@@ -239,10 +239,12 @@
 				var timeS = 0;
 				function animate() {
 					// requestAnimationFrame( animate );
+					video.play();
 					var T = clock.getDelta();
 					timeS = timeS + T;
 					if(timeS > renderT){
 						timeS = 0;
+						video.pause();
 						render();
 					}
 				}
