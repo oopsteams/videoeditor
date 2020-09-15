@@ -40,7 +40,7 @@
 				playing <a href="http://durian.blender.org/" target="_blank" rel="noopener">sintel</a> trailer
 			</div>
 	
-	<video id="video" loop crossOrigin="anonymous" playsinline style="display:none">
+	<video id="video" loop crossOrigin="anonymous" playsinline style="display:">
 		<source src="/three/textures/sintel.ogv" type='video/ogg; codecs="theora, vorbis"'>
 		<source src="/three/textures/sintel.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
 	</video>
@@ -107,7 +107,7 @@
 					container.appendChild( renderer.domElement );
 	
 					video = document.getElementById( 'video' );
-					video.play();
+					// video.play();
 					video.addEventListener('play', function() {
 						this.currentTime = 3;
 					}, false);
@@ -309,6 +309,8 @@
 					            });
 					        });
 				}
+				window.cut_canvas = cut_canvas;
+				window.three_con = container;
 				//////////////////////////////////////////////////////cut canvas end
 				function render() {
 	
