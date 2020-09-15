@@ -60,7 +60,7 @@ module.exports = {
             socket.emit('upload', {
                 'projectId'  : 0, //app.project.id,
                 'id'         : 0,
-                'fileName'   : "test.jpg",
+                'fileName'   : "test.png",
                 'byteOffset' : file.get('byteOffset'),
                 'bytesTotal' : file.get('size'),
                 'bytes'      : blob
