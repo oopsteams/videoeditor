@@ -29,7 +29,10 @@ server.use('/', router);
 server.use(express.static('public'));
 
 //ws
-const options = {};
+const options = {transports:['websocket'
+    , 'htmlfile'
+    , 'xhr-polling'
+    , 'jsonp-polling']};
 let io = require('socket.io')(options);
 /**
  * SOCKET.IO CONFIGURATION
@@ -37,14 +40,14 @@ let io = require('socket.io')(options);
 // io.enable('browser client minification');  // send minified client
 // io.enable('browser client etag');          // apply etag caching logic based on version number
 // io.enable('browser client gzip');          // gzip the file
-io.set('log level', 1);                    // reduce logging
+// io.set('log level', 1);                    // reduce logging
 // io.set('browser client', false);           //does Socket.IO need to serve the static resources
-io.set('transports', [                     // enable all transports (optional if you want flashsocket)
-    'websocket'
-    , 'htmlfile'
-    , 'xhr-polling'
-    , 'jsonp-polling'
-]);
+// io.set('transports', [                     // enable all transports (optional if you want flashsocket)
+//     'websocket'
+//     , 'htmlfile'
+//     , 'xhr-polling'
+//     , 'jsonp-polling'
+// ]);
 
 /**
  * SOCKET.IO EVENTS
