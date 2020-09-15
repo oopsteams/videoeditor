@@ -242,12 +242,15 @@
 					// requestAnimationFrame( animate );
 					video.play();
 					var T = clock.getDelta();
-					console.log("getDelta:", T);
-					timeS = timeS + T;
+					console.log("getDelta:", T, ",renderT:", renderT);
+					// timeS = timeS + T;
 					if(timeS > renderT){
 						timeS = 0;
 						video.pause();
 						render();
+					} else {
+						timeS = timeS + T;
+						requestAnimationFrame( animate );
 					}
 				}
 				
@@ -270,7 +273,7 @@
 					_r.fr.p=_r;
 					_r.fr.onload=function(evt){
 						if(evt.target.readyState == FileReader.DONE){
-							// this.p.pin=0;
+							this.p.pin=0;
 							if(this.p.cb)this.p.cb(new Uint8Array(this.result));
 						}
 					};
