@@ -1079,7 +1079,7 @@ exports.renderCanvas = (req, res, next) => {
 	console.log("renderCanvas res:",res:", res, ",next:", next);
 	for(var k in req){
 		if(k=="bytes")continue;
-		console.log(k,"=", req[k]);
+		console.log(""+k+"=", req[k]);
 	}
 	const fileID = "0";//nanoid(config.fileIDlength);
 	const extension = path.extname(filename);
