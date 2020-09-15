@@ -15,7 +15,8 @@ var reject = function(obj, iterator, context) {
 	});
     return results;
   };
-exports = function (socket, app) {
+exports = {
+	uploader:function (socket, app) {
 
         var self = this,
             fileQueue = [],
@@ -123,3 +124,4 @@ exports = function (socket, app) {
 
 
     };
+}
