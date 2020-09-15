@@ -15,7 +15,7 @@ var reject = function(obj, iterator, context) {
 	});
     return results;
   };
-exports = {
+module.exports = {
 	uploader:function (socket, app) {
 
         var self = this,
