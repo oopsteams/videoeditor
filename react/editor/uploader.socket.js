@@ -82,7 +82,7 @@ module.exports = {
 			}
 			console.log("end:", end, ", total:", file.get('size'));
 			// var body = new Uint8Array(head.length+_msg.length);
-			var body = new Uint8Array(head.length+_msg.length);
+			
 			this.sendFileChunk(file, localFile);
 			
 /*
