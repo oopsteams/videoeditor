@@ -192,8 +192,7 @@
 						// let canvas = renderer.domElement;
 						// let canvas = container.querySelector('canvas');
 						// console.log("querySelector canvas!");
-						let canvas = window.rend.domElement;
-						cut_canvas(canvas);
+						
 					};
 					window.three_con = container;
 					window.rend = renderer;
@@ -366,6 +365,8 @@
 					renderer.clear();
 					composer.render();
 					window.rend = renderer;
+					let canvas = window.rend.domElement;
+					cut_canvas(canvas);
 				}
 	
 	
