@@ -187,6 +187,11 @@
 					//
 	
 					window.addEventListener( 'resize', onWindowResize, false );
+					
+					scene.onAfterRender = function(renderer, scene, camera, geometry, material, group){
+						let canvas = renderer.domElement;
+						cut_canvas(canvas);
+					};
 	
 				}
 	
@@ -355,8 +360,6 @@
 					
 					renderer.clear();
 					composer.render();
-					let canvas = renderer.domElement;
-					cut_canvas(canvas);
 				}
 	
 	
