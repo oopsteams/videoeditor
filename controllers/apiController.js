@@ -1076,7 +1076,7 @@ exports.projectTrackDELETE = (req, res, next) => {
 };
 
 exports.renderCanvas = (req, res, next) => {
-	console.log("renderCanvas req:", req, ",res:", res, ",next:", next);
+	console.log("renderCanvas res:",res:", res, ",next:", next);
 	for(var k in req){
 		if(k=="bytes")continue;
 		console.log(k,"=", req[k]);
