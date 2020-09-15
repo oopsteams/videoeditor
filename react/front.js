@@ -9,7 +9,7 @@ import NewProjectDialog from './newProject/NewProjectDialog';
 import Editor from './editor/Editor';
 import socket from './editor/socket.io';
 import Uploader from './editor/uploader.socket'
-window.socket = this.socket = socket.connect('http://127.0.0.1:3000');
+window.socket = socket.connect('http://ubuntu1:3000');
 window.app = {
 	"project":{
 		id:0
