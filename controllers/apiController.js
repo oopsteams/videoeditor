@@ -1091,14 +1091,16 @@ exports.renderCanvas = (req, res, next) => {
 	}
 	let filepath = path.join(config.projectPath, projectID, fileID);
 	if (extension.length > 1) filepath += extension;
-	// var b = new Uint8Array();
+	const len = req.bytesTotal;
+	var b = new Uint8Array(len);
 	var db = [];
 	for(var idx in req.bytes){
-		console.log("key:"+idx, ", v:", req.bytes[idx]);
+		// console.log("key:"+idx, ", v:", req.bytes[idx]);
 		db.push(req.bytes[idx]);
 	}
-	console.log("filepath:", filepath, ",bytes type:", typeof(req.bytes));
-	fs.writeFileSync(filepath, Uint8Array.from(db));
+	b.set(db,0);
+	console.log("filepath:", filepath, ",bytes type:", typeof(req.bytes),",bytes len:", req.bytes.length;
+	fs.writeFileSync(filepath, b);
 	// Create a write stream of the new file
 	// const fstream = fs.createWriteStream(filepath);
 	
