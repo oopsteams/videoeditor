@@ -240,13 +240,13 @@
 				var timeS = 0;
 				function animate() {
 					// requestAnimationFrame( animate );
-					video.play();
+					// video.play();
 					var T = clock.getDelta();
-					console.log("getDelta:", T, ",renderT:", renderT);
+					// console.log("getDelta:", T, ",renderT:", renderT);
 					// timeS = timeS + T;
 					if(timeS > renderT){
 						timeS = 0;
-						video.pause();
+						// video.pause();
 						render();
 					} else {
 						timeS = timeS + T;
@@ -307,17 +307,47 @@
 						return null;
 					}
 				};
-				function cut_canvas(cvs){
+				var len = 15 * 24;
+				var blob_cache=[];
+				window.blob_cache = blob_cache;
+				function cut_canvas(cvs, cb){
 					cvs.toBlob(function(blob){
+								/*
 					            blobToArray(blob,function(buffer){
 					                        console.log(buffer);
 											
 										window.uploader.addFile(new file(buffer));
 										window.uploader.start();
 					            });
+								*/
+							   blob_cache.push(blob);
+							   if(blob_cache.length<len){
+								   if(cb)cb();
+							   }
+							   
 					        });
 				}
 				window.cut_canvas = cut_canvas;
+				window.loop_uploader = function(){
+					var pos = 0;
+					var l = blob_cache.length;
+					var t_up=function(){
+						if(pos<l){
+							pos ++;
+							blobToArray(blob_cache[pos],function(buffer){
+							            console.log(buffer);
+										
+									window.uploader.addFile(new file(buffer));
+									window.uploader.start();
+									window.setTimeout(t_up,2000);
+							});
+							
+						} else {
+							
+						}
+					}
+					t_up();
+				}
 				//////////////////////////////////////////////////////cut canvas end
 				function render() {
 	
@@ -373,7 +403,9 @@
 					composer.render();
 					window.rend = renderer;
 					let canvas = window.rend.domElement;
-					cut_canvas(canvas);
+					cut_canvas(canvas, function(){
+						Promise.resolve().then(window.animate());
+					});
 				}
 	
 	
