@@ -56,7 +56,7 @@ module.exports = {
         this.sendFileChunk = function (file, blob) {
 
             isUploading = true;
-
+			console.log("sendFileChunk file:", file);
             socket.emit('upload', {
                 'projectId'  : 0, //app.project.id,
                 'id'         : 0,
@@ -80,7 +80,7 @@ module.exports = {
 			if (start + Config.UPLOADER_CHUNK_SIZE > file.get('size')) {
 			    end = file.get('size');
 			}
-			console.log("end:", end, ", total:", file.get('size'));
+			console.log("end:", end, ", total:", file.get('size'), ", start:", start);
 			// var body = new Uint8Array(head.length+_msg.length);
 			
 			this.sendFileChunk(file, localFile);
