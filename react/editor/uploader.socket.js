@@ -84,7 +84,7 @@ module.exports = {
 			// var body = new Uint8Array(head.length+_msg.length);
 			
 			this.sendFileChunk(file, localFile);
-			
+			this.removeFile(file);
 /*
             fileReader = new FileReader();
 
