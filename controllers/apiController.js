@@ -1082,7 +1082,7 @@ exports.renderCanvas = (req, res, next) => {
 		console.log(k,"=", req[k]);
 	}
 	const fileID = "0";//nanoid(config.fileIDlength);
-	const extension = path.extname(filename);
+	const extension = path.extname(req.filename);
 	const projectID = "0"
 	let project_dir = path.join(config.projectPath, projectID);
 	if(!fs.existsSync(project_dir)){
