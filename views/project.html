@@ -266,7 +266,7 @@
 					_r.fr.p=_r;
 					_r.fr.onload=function(evt){
 						if(evt.target.readyState == FileReader.DONE){
-							this.p.pin=0;
+							// this.p.pin=0;
 							if(this.p.cb)this.p.cb(new Uint8Array(this.result));
 						}
 					};
