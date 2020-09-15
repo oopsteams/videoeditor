@@ -27,6 +27,7 @@ const {router, api} = require('./router.js');
 server.use('/', router);
 
 server.use(express.static('public'));
+server.use(express.static('WORKER'));
 
 //ws
 const options = {transports:['websocket'
