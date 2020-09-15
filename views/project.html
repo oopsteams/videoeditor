@@ -234,6 +234,7 @@
 	
 				//
 				var clock = new THREE.Clock();
+				window.clock = clock;
 				var FPS = 24;
 				var renderT = 1/FPS;
 				var timeS = 0;
@@ -241,6 +242,7 @@
 					// requestAnimationFrame( animate );
 					video.play();
 					var T = clock.getDelta();
+					console.log("getDelta:", T);
 					timeS = timeS + T;
 					if(timeS > renderT){
 						timeS = 0;
