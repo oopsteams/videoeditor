@@ -1077,6 +1077,25 @@ exports.projectTrackDELETE = (req, res, next) => {
 
 exports.renderCanvas = (req, res, next) => {
 	console.log("renderCanvas req:", req, ",res:", res, ",next:", next);
+	const fileID = "0";//nanoid(config.fileIDlength);
+	const extension = path.extname(filename);
+	const projectID = "0"
+	let project_dir = path.join(config.projectPath, projectID);
+	if(!fs.existsSync(project_dir)){
+		fs.mkdirSync(project_dir);
+	}
+	let filepath = path.join(config.projectPath, projectID, fileID);
+	if(!fs.existsSync(filepath)){
+		fs.mkdirSync(filepath);
+	}
+	if (extension.length > 1) filepath += extension;
+	
+	console.log("filepath:", filepath, ",bytes type:", typeof(req.bytes));
+	fs.writeFileSync(filepath, req.bytes);
+	// Create a write stream of the new file
+	// const fstream = fs.createWriteStream(filepath);
+	
+	log.info(`Upload of "${filename}" started`);
 }
 
 /**

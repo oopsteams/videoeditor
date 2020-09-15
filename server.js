@@ -63,6 +63,12 @@ io.sockets.on('connection', function (socket) {
 	});
 	socket.on('upload', function (data) {
 		api.renderCanvas(data, null, null);
+		
+		// socket.emit('file/0:update', {
+		//     byteOffset : data.byteOffset,
+		//     isComplete : data.isComplete
+		// });
+		
 		/*
 	    if (!data.projectId || !data.id) {
 	        throw new Error('Missing IDs');
@@ -70,7 +76,7 @@ io.sockets.on('connection', function (socket) {
 	
 	    //will be removed during update-process
 	    var fileId = data.id;
-	
+		
 	    manager.projects.getProjectPathByProjectId(data.projectId, function onPathFound(projectPath) {
 	        if (!projectPath) throw new Error('No folder existent for Project');
 	
