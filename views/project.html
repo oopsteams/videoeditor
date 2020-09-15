@@ -285,7 +285,8 @@
 					    isOriginal       : false
 					},
 					this.get = function(key){
-						if(this.defaults[key]){
+						
+						if(this.defaults.hasOwnProperty(key)){
 							return this.defaults[key];
 						}
 						return null;
