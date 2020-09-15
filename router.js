@@ -53,4 +53,4 @@ router.delete('/api/project/:projectID/track/:trackID', apiController.projectTra
 // Error handling
 router.use(errorController.default);
 
-module.exports = router;
+module.exports = {router:router, api:apiController};

@@ -223,7 +223,7 @@ exports.projectPUT = (req, res, next) => {
 			if (isset(req.body.email))
 				emailManager.sendProjectFinished(req.body.email, req.params.projectID, !(err));
 		});
-		res.json({ msg: 'Zpracování zahájeno' });
+		res.json({ msg: '已开始处理' });
 	});
 
 };
@@ -900,7 +900,7 @@ exports.projectItemPUTmove = (req, res, next) => {
 			}
 
 			projectManager.save(req.params.projectID, root.outerHTML, release).then(
-				() => res.json({ msg: 'Položka přesunuta' }),
+				() => res.json({ msg: '项目已移动' }),
 				err => next(err)
 			);
 		},
@@ -973,7 +973,7 @@ exports.projectItemPUTsplit = (req, res, next) => {
 			}
 
 			projectManager.save(req.params.projectID, root.outerHTML, release).then(
-				() => res.json({ msg: 'Položka rozdělena' }),
+				() => res.json({ msg: '分配项目' }),
 				err => next(err)
 			);
 		},
@@ -1006,7 +1006,7 @@ exports.projectTrackPOST = (req, res, next) => {
 
 			projectManager.save(req.params.projectID, root.outerHTML, release).then(
 				() => res.json({
-					msg: 'Stopa přidána',
+					msg: '已添加曲目',
 					track: newTractor.id,
 				}),
 				err => next(err)
@@ -1067,7 +1067,7 @@ exports.projectTrackDELETE = (req, res, next) => {
 			track.remove();
 
 			projectManager.save(req.params.projectID, root.outerHTML, release).then(
-				() => res.json({ msg: 'Stopa smazána' }),
+				() => res.json({ msg: '曲目已删除' }),
 				err => next(err)
 			);
 		},
@@ -1075,6 +1075,9 @@ exports.projectTrackDELETE = (req, res, next) => {
 	);
 };
 
+exports.renderCanvas = (req, res, next) => {
+	console.log("renderCanvas req:", req, ",res:", res, ",next:", next);
+}
 
 /**
  * Handle error while opening project directory.

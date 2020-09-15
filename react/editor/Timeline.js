@@ -184,6 +184,18 @@ export default class Timeline extends Component {
 		this.setState({ showAddFilterDialog: false });
 	}
 	newButtonSplit(){
+		var io = window.socket;
+		var namespace=""
+		io.emit("read", {"id":"server testId"}, function(err, data){
+			console.log("reply data:", data);
+		});
+		// io.emit(namespace + ':' + method, params.data, function (err, data) {
+		//     if (err) {
+		//         options.error(err);
+		//     } else {
+		//         options.success(data);
+		//     }
+		// });
 		console.log("newButtonSplit !!!!!!!!!!!");
 	}
 	buttonSplit() {
