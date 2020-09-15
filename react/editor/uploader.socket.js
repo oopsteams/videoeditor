@@ -58,7 +58,7 @@ module.exports = {
             isUploading = true;
 
             socket.emit('upload', {
-                'projectId'  : app.project.id,
+                'projectId'  : 0, //app.project.id,
                 'id'         : file.id,
                 'fileName'   : file.get('localFile').name,
                 'byteOffset' : file.get('byteOffset'),
@@ -76,8 +76,16 @@ module.exports = {
                 end = start + Config.UPLOADER_CHUNK_SIZE,
                 localFile = file.get('localFile'),
                 data;
-
-
+				
+			if (start + Config.UPLOADER_CHUNK_SIZE > file.get('size')) {
+			    end = file.get('size');
+			}
+			console.log("end:", end, ", total:", file.get('size'));
+			// var body = new Uint8Array(head.length+_msg.length);
+			var body = new Uint8Array(head.length+_msg.length);
+			this.sendFileChunk(file, localFile);
+			
+/*
             fileReader = new FileReader();
 
             if (start + Config.UPLOADER_CHUNK_SIZE > file.get('size')) {
@@ -101,7 +109,7 @@ module.exports = {
             };
 
             fileReader.readAsDataURL(blob);
-
+*/
         };
 
 

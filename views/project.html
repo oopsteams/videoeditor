@@ -225,17 +225,83 @@
 				}
 	
 				//
-	
+				var clock = new THREE.Clock();
+				var FPS = 24;
+				var renderT = 1/FPS;
+				var timeS = 0;
 				function animate() {
-	
-					requestAnimationFrame( animate );
-	
-					render();
-	
+					// requestAnimationFrame( animate );
+					var T = clock.getDelta();
+					timeS = timeS + T;
+					if(timeS > renderT){
+						timeS = 0;
+						render();
+					}
 				}
-	
+				
+				window.animate = animate;
 				var h, counter = 1;
-	
+				
+				//////////////////////////////////////////////////////cut canvas
+				var readers = [];
+				var getBlobReader=function(){
+					for(var i=0;i<readers.length;i++){
+						var r = readers[i];
+						console.log("check reader index:"+i);
+						if(r.pin==0){
+							r.pin=1;
+							r.rs=null;
+							return r;
+						}
+					}
+					var _r = {"pin":1,"fr":new FileReader(),"cb":null};
+					_r.fr.p=_r;
+					_r.fr.onload=function(evt){
+						if(evt.target.readyState == FileReader.DONE){
+							this.p.pin=0;
+							if(this.p.cb)this.p.cb(new Uint8Array(this.result));
+						}
+					};
+					this.readers[this.readers.length]=_r;
+					return _r;
+				}
+				var blobToArray=function(b,cb){
+					var r = getBlobReader();
+					if(r){
+						r.cb=cb;
+						r.fr.readAsArrayBuffer(b);
+					}
+				};
+				var file = function(buffer){
+					this.defaults = {
+					    ext              : 'jpg',
+					    remoteFileName   : 'test',
+					    localUrl         : null,
+					    localFile        : buffer,
+					    size             : buffer.length,
+					    encodingProgress : 0,
+					    byteOffset       : 0,
+					    isComplete       : false,
+					    isOriginal       : false
+					},
+					this.get = function(key){
+						if(this.defaults[key]){
+							return this.defaults[key];
+						}
+						return null;
+					}
+				};
+				function cut_canvas(cvs){
+					cvs.toBlob(function(blob){
+					            blobToArray(blob,function(buffer){
+					                        console.log(buffer);
+											
+										window.uploader.addFile(new file(buffer));
+										window.uploader.start();
+					            });
+					        });
+				}
+				//////////////////////////////////////////////////////cut canvas end
 				function render() {
 	
 					var time = Date.now() * 0.00005;
@@ -285,7 +351,8 @@
 					}
 	
 					counter ++;
-	
+					let canvas = renderer.domElement;
+					
 					renderer.clear();
 					composer.render();
 	

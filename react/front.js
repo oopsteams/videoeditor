@@ -18,6 +18,15 @@ window.app = {
 window.uploader = new wsUploader.uploader(window.socket, window.app);
 window.socket.on("asset/0:update", function(data){
 	console.log("asset/0:update data:", data);
+	/*
+	if (file.hasChanged('byteOffset') && !file.get('isComplete')) {
+		console.log("update:", file);
+	    // this.set('progress', Math.roundDec(this.getOriginalFile().get('byteOffset') / this.getOriginalFile().get('size') * 100));
+	    // this.set('status', 'Uploading');
+	    // window.uploader.processFile(file);
+	
+	}
+	*/
 });
 if (document.getElementById('newProjectDialog') !== null) {
 	// Landing page
