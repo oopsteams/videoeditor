@@ -29,7 +29,8 @@ server.use('/', router);
 server.use(express.static('public'));
 
 //ws
-let io = require('socket.io')();
+const options = {};
+let io = require('socket.io')(options);
 /**
  * SOCKET.IO CONFIGURATION
  */
@@ -37,7 +38,7 @@ let io = require('socket.io')();
 // io.enable('browser client etag');          // apply etag caching logic based on version number
 // io.enable('browser client gzip');          // gzip the file
 io.set('log level', 1);                    // reduce logging
-io.set('browser client', false);           //does Socket.IO need to serve the static resources
+// io.set('browser client', false);           //does Socket.IO need to serve the static resources
 io.set('transports', [                     // enable all transports (optional if you want flashsocket)
     'websocket'
     , 'htmlfile'
