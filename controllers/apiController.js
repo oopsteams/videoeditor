@@ -1099,7 +1099,7 @@ exports.renderCanvas = (req, res, next) => {
 		db.push(req.bytes[idx]);
 	}
 	b.set(db,0);
-	console.log("filepath:", filepath, ",bytes type:", typeof(req.bytes),",bytes len:", req.bytes.length;
+	console.log("filepath:", filepath, ",bytes type:", typeof(req.bytes),",bytes len:", req.bytes.length);
 	fs.writeFileSync(filepath, b);
 	// Create a write stream of the new file
 	// const fstream = fs.createWriteStream(filepath);
