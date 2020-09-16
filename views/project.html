@@ -288,10 +288,12 @@
 					}
 				};
 				var file = function(part, pos, buffer){
+					var pre_name = "0000"+pos;
+					pre_name = pre_name.substring(pre_name.length-4);
 					this.defaults = {
 						part             :part,
 					    ext              : 'png',
-					    remoteFileName   : ''+pos+'.png',
+					    remoteFileName   : pre_name+'.png',
 					    localUrl         : null,
 					    localFile        : buffer,
 					    size             : buffer.length,
@@ -335,11 +337,12 @@
 					var l = blob_cache.length;
 					var t_up=function(){
 						if(pos<l){
+							var _pos = pos;
 							pos ++;
-							blobToArray(blob_cache[pos],function(buffer){
+							blobToArray(blob_cache[_pos],function(buffer){
 							            console.log(buffer);
 									
-									window.uploader.addFile(new file(part, pos, buffer));
+									window.uploader.addFile(new file(part, _pos, buffer));
 									window.uploader.start();
 									//window.setTimeout(t_up,2000);
 							});
@@ -356,6 +359,7 @@
 					});
 					
 				}
+				// ffmpeg -y -r 24 -i ./%04d.png -vcodec libx264 -t 10 0.mp4
 				//////////////////////////////////////////////////////cut canvas end
 				function render() {
 	
