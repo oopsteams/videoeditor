@@ -45,17 +45,30 @@ exports.fontPOST = (req, res, next) =>{
 	console.log("fontPOST req.body:", req.body, ", params:", typeof(req.body));
 	// console.log("fontPOST req:", req);
 	let font_dir = path.join(config.publicPath, 'three/fonts/');
-	var txt = req.params.text;
+	var txt = req.body.text;
 	const fontName = 'FangSong_Regular.json';
-	
+	var font_json = null;
 	if(fonts_cache.hasOwnProperty(fontName)){
-		var glyphs = {}
-		res.json({"glyphs": glyphs});
+		font_json = fonts_cache[fontName];
 	}
 	var font_path = path.join(font_dir, fontName);
-	if(!fs.existsSync(project_dir)){
-		fs.mkdirSync(project_dir);
+	if(fs.existsSync(font_path)){
+		var font_datas = fs.readFileSync(font_path);
+		font_json = JSON.parse(font_datas);
+		fonts_cache[fontName] = font_json;
 	}
+	var glyphs = {}
+	if(font_json){
+		var txt_chars = txt.split('');
+		var _glyphs = font_json['glyphs'];
+		txt_chars.forEach((c, idx)=>{
+			if(_glyphs.hasOwnProperty(c)){
+				glyphs[c] = _glyphs[c];	
+			}
+		});
+	}
+	
+	res.json({"glyphs": glyphs});
 }
 
 
