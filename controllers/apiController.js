@@ -1082,8 +1082,8 @@ exports.renderCanvas = (req, res, next) => {
 		console.log(k,"=", req[k]);
 	}
 	var filename = req.fileName;
-	const partID = req.id;//nanoid(config.fileIDlength);
-	const projectID = req.projectId;
+	const partID = ""+req.id;//nanoid(config.fileIDlength);
+	const projectID = ""+req.projectId;
 	const extension = path.extname(filename);
 	
 	let project_dir = path.join(config.projectPath, projectID);
