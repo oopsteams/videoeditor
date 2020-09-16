@@ -399,6 +399,7 @@
 					camera.lookAt( t );
 					renderer.clear();
 					renderer.render( scene, camera );
+					requestAnimationFrame( window.animate );
 				}
 				function render1() {
 	
@@ -457,7 +458,9 @@
 					window.rend = renderer;
 					let canvas = window.rend.domElement;
 					// cut_canvas(canvas, function(){
-					// 	Promise.resolve().then(window.animate());
+					// 	Promise.resolve().then(
+					// requestAnimationFrame( window.animate );
+					// );
 					// });
 				}
 	
