@@ -63,7 +63,13 @@ io.sockets.on('connection', function (socket) {
 		cb(null, {"id":"testid"})
 	});
 	socket.on('upload', function (data) {
-		api.renderCanvas(data, null, null);
+		api.renderCanvas(data, null, function(){
+			const partID = data.id;
+			socket.emit('file/' + partID + ':update', {
+			    byteOffset : data.byteOffset,
+			    isComplete : data.isComplete
+			});
+		});
 		
 		// socket.emit('file/0:update', {
 		//     byteOffset : data.byteOffset,

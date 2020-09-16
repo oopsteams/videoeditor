@@ -16,8 +16,8 @@ window.app = {
 	},
 };
 window.uploader = new wsUploader.uploader(window.socket, window.app);
-window.socket.on("asset/0:update", function(data){
-	console.log("asset/0:update data:", data);
+// window.socket.on("asset/0:update", function(data){
+// 	console.log("asset/0:update data:", data);
 	/*
 	if (file.hasChanged('byteOffset') && !file.get('isComplete')) {
 		console.log("update:", file);
@@ -27,7 +27,7 @@ window.socket.on("asset/0:update", function(data){
 	
 	}
 	*/
-});
+// });
 if (document.getElementById('newProjectDialog') !== null) {
 	// Landing page
 	ReactDOM.render(<NewProjectDialog />, document.getElementById('newProjectDialog'));

@@ -1082,15 +1082,20 @@ exports.renderCanvas = (req, res, next) => {
 		console.log(k,"=", req[k]);
 	}
 	var filename = req.fileName;
-	const fileID = "0";//nanoid(config.fileIDlength);
+	const partID = req.id;//nanoid(config.fileIDlength);
+	const projectID = req.projectId;
 	const extension = path.extname(filename);
-	const projectID = "0"
+	
 	let project_dir = path.join(config.projectPath, projectID);
 	if(!fs.existsSync(project_dir)){
 		fs.mkdirSync(project_dir);
 	}
-	let filepath = path.join(config.projectPath, projectID, fileID);
-	if (extension.length > 1) filepath += extension;
+	let partpath = path.join(project_dir, partID);
+	if(!fs.existsSync(partpath)){
+		fs.mkdirSync(partpath);
+	}
+	let filepath = path.join(partpath, filename);
+	// if (extension.length > 1) filepath += extension;
 	const len = req.bytesTotal;
 	var b = new Uint8Array(len);
 	var db = [];
@@ -1105,6 +1110,10 @@ exports.renderCanvas = (req, res, next) => {
 	// const fstream = fs.createWriteStream(filepath);
 	
 	log.info(`Upload of "${filename}" started`);
+	if(next){
+		next();
+	}
+	
 }
 
 /**

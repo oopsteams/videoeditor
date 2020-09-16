@@ -57,10 +57,13 @@ module.exports = {
 
             isUploading = true;
 			console.log("sendFileChunk file:", file);
+			var rFileName = file.get('remoteFileName');
+			var ext = file.get('ext');
+			var part = file.get('part')
             socket.emit('upload', {
                 'projectId'  : 0, //app.project.id,
-                'id'         : 0,
-                'fileName'   : "test.png",
+                'id'         : part,
+                'fileName'   : rFileName+"."+ext,
                 'byteOffset' : file.get('byteOffset'),
                 'bytesTotal' : file.get('size'),
                 'bytes'      : blob
@@ -75,6 +78,7 @@ module.exports = {
             var start = file.get('byteOffset'),
                 end = start + Config.UPLOADER_CHUNK_SIZE,
                 localFile = file.get('localFile'),
+				rFileName = file.get('remoteFileName'),
                 data;
 				
 			if (start + Config.UPLOADER_CHUNK_SIZE > file.get('size')) {
