@@ -42,7 +42,7 @@ exports.projectPOST = (req, res, next) => {
 
 const fonts_cache = {};
 exports.fontPOST = (req, res, next) =>{
-	console.log("fontPOST req.body:", req.body, ", params:", req.params);
+	console.log("fontPOST req.body:", req.body, ", params:", typeof(req.body));
 	console.log("fontPOST req:", req);
 	let font_dir = path.join(config.publicPath, 'three/fonts/');
 	var txt = req.params.text;
