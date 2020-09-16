@@ -44,8 +44,10 @@
 		<source src="/three/textures/sintel.ogv" type='video/ogg; codecs="theora, vorbis"'>
 		<source src="/three/textures/sintel.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
 	</video>
-	<script type="module">
 	
+	<script type="module">
+				var container_id = 'preview-player';
+				import Effects from '/js/effects-fonts.js';
 				import * as THREE from '/three/build/three.module.js';
 	
 				import { EffectComposer } from '/three/lib/jsm/postprocessing/EffectComposer.js';
@@ -53,7 +55,7 @@
 				import { ShaderPass } from '/three/lib/jsm/postprocessing/ShaderPass.js';
 				import { BloomPass } from '/three/lib/jsm/postprocessing/BloomPass.js';
 				import { CopyShader } from '/three/lib/jsm/shaders/CopyShader.js';
-	
+				var effects;
 				var container;
 	
 				var camera, scene, renderer;
@@ -83,8 +85,36 @@
 					animate();
 	
 				}, false );
-	
 				function init() {
+					container = document.createElement( 'div' );
+					document.body.appendChild( container );
+					camera = new THREE.PerspectiveCamera( 30, window.innerWidth / window.innerHeight, 1, 1500 );
+									camera.position.set( 0, 400, 700 );
+					scene = new THREE.Scene();
+					scene.background = new THREE.Color( 0x000000 );
+					scene.fog = new THREE.Fog( 0x000000, 250, 1400 );
+					
+					var dirLight = new THREE.DirectionalLight( 0xffffff, 0.125 );
+					dirLight.position.set( 0, 0, 1 ).normalize();
+					scene.add( dirLight );
+	
+					var pointLight = new THREE.PointLight( 0xffffff, 1.5 );
+					pointLight.position.set( 0, 100, 90 );
+					pointLight.name = "pointLight1";
+					scene.add( pointLight );
+					
+					renderer = new THREE.WebGLRenderer( { antialias: true } );
+					renderer.setPixelRatio( window.devicePixelRatio );
+					renderer.setSize( window.innerWidth, window.innerHeight );
+					container.appendChild( renderer.domElement );
+					
+					renderer.autoClear = false;
+					
+					effects = new Effects(container, "风塘美术");
+					effects.init(scene, camera, renderer);
+				}
+	
+				function init1() {
 	
 					var overlay = document.getElementById( 'overlay' );
 					overlay.remove();
@@ -196,6 +226,8 @@
 					};
 					window.three_con = container;
 					window.rend = renderer;
+					
+					
 				}
 	
 				function onWindowResize() {
@@ -361,7 +393,13 @@
 				}
 				// ffmpeg -y -r 24 -i ./%04d.png -vcodec libx264 -t 10 0.mp4
 				//////////////////////////////////////////////////////cut canvas end
-				function render() {
+				function render(){
+					var t = effects.render(scene, camera, renderer);
+					camera.lookAt( t );
+					renderer.clear();
+					renderer.render( scene, camera );
+				}
+				function render1() {
 	
 					var time = Date.now() * 0.00005;
 	
@@ -411,13 +449,15 @@
 	
 					counter ++;
 					
+					effects.render(scene, camera, renderer);
+					
 					renderer.clear();
 					composer.render();
 					window.rend = renderer;
 					let canvas = window.rend.domElement;
-					cut_canvas(canvas, function(){
-						Promise.resolve().then(window.animate());
-					});
+					// cut_canvas(canvas, function(){
+					// 	Promise.resolve().then(window.animate());
+					// });
 				}
 	
 	
