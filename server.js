@@ -64,7 +64,7 @@ io.sockets.on('connection', function (socket) {
 	});
 	socket.on('upload', function (data) {
 		api.renderCanvas(data, null, function(){
-			const partID = data.id;
+			const partID = ""+data.id;
 			socket.emit('file/' + partID + ':update', {
 			    byteOffset : data.byteOffset,
 			    isComplete : data.isComplete
