@@ -58,9 +58,15 @@ exports.fontPOST = (req, res, next) =>{
 		font_json = JSON.parse(font_datas);
 		fonts_cache[fontName] = font_json;
 	}
-	var glyphs = {}
+	var glyphs = {};
+	var font_body = {"glyphs": glyphs};
 	if(font_json){
 		var txt_chars = txt.split('');
+		for(var k in font_json){
+			if(['original_font_information', 'glyphs'].indexOf(k)<0){
+				font_body[k] = font_json[k];
+			}
+		}
 		var _glyphs = font_json['glyphs'];
 		txt_chars.forEach((c, idx)=>{
 			if(_glyphs.hasOwnProperty(c)){
@@ -69,7 +75,7 @@ exports.fontPOST = (req, res, next) =>{
 		});
 	}
 	
-	res.json({"glyphs": glyphs});
+	res.json(font_body);
 }
 
 
