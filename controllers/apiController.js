@@ -46,7 +46,8 @@ exports.fontPOST = (req, res, next) =>{
 	// console.log("fontPOST req:", req);
 	let font_dir = path.join(config.publicPath, 'three/fonts/');
 	var txt = req.body.text;
-	const fontName = 'FangSong_Regular.json';
+	var fontname = req.body.fontname;
+	const fontName = fontname;//'FangSong_Regular.json';
 	var font_json = null;
 	if(fonts_cache.hasOwnProperty(fontName)){
 		font_json = fonts_cache[fontName];
