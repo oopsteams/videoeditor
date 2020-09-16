@@ -40,6 +40,21 @@ exports.projectPOST = (req, res, next) => {
 
 };
 
+const fonts_cache = {};
+exports.fontPOST = (req, res, next) =>{
+	let font_dir = path.join(config.publicPath, 'three/fonts/');
+	var txt = req.params.text;
+	const fontName = 'FangSong_Regular.json';
+	if(fonts_cache.hasOwnProperty(fontName)){
+		var glyphs = {}
+		res.json({"glyphs": glyphs});
+	}
+	var font_path = path.join(font_dir, fontName);
+	if(!fs.existsSync(project_dir)){
+		fs.mkdirSync(project_dir);
+	}
+}
+
 
 exports.projectGET = (req, res) => {
 

@@ -22,6 +22,8 @@ router.get('/project/:projectID/file/:fileID', mainController.resource);
 // API route
 router.all('/api', apiController.default);
 
+router.post('/api/font', apiController.fontPOST);
+
 router.post('/api/project', apiController.projectPOST);
 
 router.get('/api/project/:projectID', apiController.projectGET);

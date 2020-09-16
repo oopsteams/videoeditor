@@ -13,3 +13,5 @@ public/style.css
 .idea/
 videoeditor.iml
 docs/
+views/
+public/

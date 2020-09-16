@@ -25,6 +25,7 @@ exports.config = {
 	adminEmail: 'elvis_su@139.com',
 
 	projectPath: 'WORKER',
+	publicPath: 'public',
 	projectIDlength: 32,
 	fileIDlength: 21,
 
