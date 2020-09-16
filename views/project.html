@@ -338,7 +338,7 @@
 							pos ++;
 							blobToArray(blob_cache[pos],function(buffer){
 							            console.log(buffer);
-										
+									
 									window.uploader.addFile(new file(part, pos, buffer));
 									window.uploader.start();
 									//window.setTimeout(t_up,2000);
@@ -354,6 +354,7 @@
 						t_up();
 						
 					});
+					
 				}
 				//////////////////////////////////////////////////////cut canvas end
 				function render() {
