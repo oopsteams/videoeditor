@@ -62,6 +62,12 @@ io.sockets.on('connection', function (socket) {
 		console.log("read data:", data,",cb:", cb);
 		cb(null, {"id":"testid"})
 	});
+	socket.on('render', function(data, cb){
+		api.backendRender(data, null, function(){
+			cb(null, {"id":"render"});
+		});
+		
+	});
 	socket.on('upload', function (data) {
 		api.renderCanvas(data, null, function(){
 			const partID = ""+data.id;
