@@ -12,6 +12,7 @@ import projectManager from '../models/projectManager';
 import log from '../models/logger';
 import error from '../models/errors';
 import {isset, isNaturalNumber} from '../models/utils';
+const webpage = require('webpage');
 
 import {nanoid} from 'nanoid';
 const fs = require('fs');
@@ -1112,7 +1113,10 @@ exports.projectTrackDELETE = (req, res, next) => {
 		err => fileErr(err, res)
 	);
 };
-
+exports.backendRender = (req, res, next) => {
+	console.log("req:", req);
+	
+}
 exports.renderCanvas = (req, res, next) => {
 	console.log("renderCanvas res:",res, ",next:", next);
 	for(var k in req){

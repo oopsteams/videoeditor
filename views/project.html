@@ -31,8 +31,10 @@
 		</div>
 	</div>
 	<script src="/main.js" async></script>
+	<canvas id="d3-canvas"></canvas>
 	<div id="overlay">
 		<button id="startButton">Play</button>
+		<button id="testButton">Test</button>
 	</div>
 	<div id="container"></div>
 	<div id="info">
@@ -44,10 +46,13 @@
 		<source src="/three/textures/sintel.ogv" type='video/ogg; codecs="theora, vorbis"'>
 		<source src="/three/textures/sintel.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
 	</video>
-	
+	<canvas id="drawing-canvas" height="960" width="480"></canvas>
+	<canvas id="drawing-canvas2" height="480" width="240"></canvas>
 	<script type="module">
 				var container_id = 'preview-player';
 				import Effects from '/js/effects-fonts.js';
+				import SwiperEffects from '/js/boom-swiper.js';
+				import CSwiperEffects from '/js/common-swiper.js';
 				import * as THREE from '/three/build/three.module.js';
 	
 				import { EffectComposer } from '/three/lib/jsm/postprocessing/EffectComposer.js';
@@ -55,7 +60,7 @@
 				import { ShaderPass } from '/three/lib/jsm/postprocessing/ShaderPass.js';
 				import { BloomPass } from '/three/lib/jsm/postprocessing/BloomPass.js';
 				import { CopyShader } from '/three/lib/jsm/shaders/CopyShader.js';
-				var effects;
+				var effects, swiper, cswiper;
 				var container;
 	
 				var camera, scene, renderer;
@@ -79,13 +84,58 @@
 					ygrid = 10;
 	
 				var startButton = document.getElementById( 'startButton' );
+				var to_start = function(){
+					init();
+					cswiper.start();
+					animate();
+				};
+				setTimeout(to_start, 1000);
 				startButton.addEventListener( 'click', function () {
 	
 					init();
+					// swiper_init();
+					cswiper.start();
 					animate();
-	
+					// swiper.start();
 				}, false );
-				function init() {
+				function init(){
+					cswiper = new CSwiperEffects(container, '你们好!');
+					var base = cswiper.init(null, null, null);
+					scene = base[0];
+					camera = base[1];
+					renderer = base[2];
+				}
+				function swiper_init(){
+					var overlay = document.getElementById( 'overlay' );
+					overlay.remove();
+						
+					container = document.createElement( 'div' );
+					document.body.appendChild( container );
+						
+					camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 10000 );
+					camera.position.z = 500;
+						
+					scene = new THREE.Scene();
+						
+					var light = new THREE.DirectionalLight( 0xffffff );
+					light.position.set( 0.5, 1, 1 ).normalize();
+					scene.add( light );
+					
+					////////////////////////////add
+					var pointLight = new THREE.PointLight( 0xffffff, 1.5 );
+					pointLight.position.set( 0, 100, 90 );
+					pointLight.name = "pointLight1";
+					scene.add( pointLight );
+					//////////////////////////////////
+					renderer = new THREE.WebGLRenderer({antialias: true});
+					renderer.setPixelRatio( window.devicePixelRatio );
+					renderer.setSize( window.innerWidth, window.innerHeight );
+					container.appendChild( renderer.domElement );
+					
+					swiper = new SwiperEffects(container, 'video');
+					swiper.init(scene, camera, renderer);
+				}
+				function init2() {
 					container = document.createElement( 'div' );
 					document.body.appendChild( container );
 					camera = new THREE.PerspectiveCamera( 30, window.innerWidth / window.innerHeight, 1, 1500 );
@@ -110,8 +160,8 @@
 					
 					renderer.autoClear = false;
 					
-					// effects = new Effects(container, "风塘美术");
-					effects = new Effects(container, "FengTangMeiShu");
+					effects = new Effects(container, "风塘美术");
+					// effects = new Effects(container, "FengTangMeiShu");
 					effects.init(scene, camera, renderer);
 				}
 	
@@ -128,14 +178,22 @@
 	
 					scene = new THREE.Scene();
 	
-					var light = new THREE.DirectionalLight( 0xffffff );
+					var light = new THREE.DirectionalLight( 0xffffff , 0.5);
 					light.position.set( 0.5, 1, 1 ).normalize();
 					scene.add( light );
-	
+					
+					////////////////////////////add
+					var pointLight = new THREE.PointLight( 0xffffff, 1.5 );
+					pointLight.position.set( 0, 100, 90 );
+					pointLight.name = "pointLight1";
+					scene.add( pointLight );
+					//////////////////////////////////
 					renderer = new THREE.WebGLRenderer();
 					renderer.setPixelRatio( window.devicePixelRatio );
 					renderer.setSize( window.innerWidth, window.innerHeight );
 					container.appendChild( renderer.domElement );
+	
+	
 	
 					video = document.getElementById( 'video' );
 					video.play();
@@ -227,7 +285,9 @@
 					};
 					window.three_con = container;
 					window.rend = renderer;
-					
+					effects = new Effects(container, "风塘美术");
+					// effects = new Effects(container, "FengTangMeiShu");
+					effects.init(scene, camera, renderer);
 					
 				}
 	
@@ -343,7 +403,7 @@
 						return null;
 					}
 				};
-				var len = 15 * 24;
+				var len = 11 * 24;
 				var blob_cache=[];
 				window.blob_cache = blob_cache;
 				function cut_canvas(cvs, cb){
@@ -359,6 +419,9 @@
 							   blob_cache.push(blob);
 							   if(blob_cache.length<len){
 								   if(cb)cb();
+							   } else {
+								   console.log("cut_canvas ok!");
+								   console.log("blob_cache:", blob_cache);
 							   }
 							   
 					        });
@@ -395,6 +458,23 @@
 				// ffmpeg -y -r 24 -i ./%04d.png -vcodec libx264 -t 10 0.mp4
 				//////////////////////////////////////////////////////cut canvas end
 				function render(){
+					// var t = effects.render(scene, camera, renderer);
+					camera.lookAt( scene.position );
+					cswiper.render(scene, camera, renderer);
+					renderer.clear();
+					renderer.render( scene, camera );
+					
+					let canvas = renderer.domElement;
+					if(cswiper.record){
+						cut_canvas(canvas, function(){
+							requestAnimationFrame( window.animate );
+						});
+					} else {
+						requestAnimationFrame( window.animate );
+					}
+					// requestAnimationFrame( window.animate );
+				}
+				function render2(){
 					var t = effects.render(scene, camera, renderer);
 					camera.lookAt( t );
 					renderer.clear();
@@ -407,6 +487,8 @@
 	
 					camera.position.x += ( mouseX - camera.position.x ) * 0.05;
 					camera.position.y += ( - mouseY - camera.position.y ) * 0.05;
+	
+					var t = effects.render(scene, camera, renderer);
 	
 					camera.lookAt( scene.position );
 	
@@ -451,17 +533,16 @@
 	
 					counter ++;
 					
-					effects.render(scene, camera, renderer);
+					// effects.render(scene, camera, renderer);
 					
 					renderer.clear();
 					composer.render();
 					window.rend = renderer;
 					let canvas = window.rend.domElement;
-					// cut_canvas(canvas, function(){
-					// 	Promise.resolve().then(
+					cut_canvas(canvas, function(){
+						requestAnimationFrame( window.animate );
+					});
 					// requestAnimationFrame( window.animate );
-					// );
-					// });
 				}
 	
 	
