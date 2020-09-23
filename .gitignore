@@ -14,5 +14,6 @@ public/style.css
 videoeditor.iml
 docs/
 views/
+views/project.html
 public/
 .DS_Store
