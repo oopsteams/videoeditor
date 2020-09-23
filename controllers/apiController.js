@@ -12,7 +12,6 @@ import projectManager from '../models/projectManager';
 import log from '../models/logger';
 import error from '../models/errors';
 import {isset, isNaturalNumber} from '../models/utils';
-const webpage = require('webpage');
 
 import {nanoid} from 'nanoid';
 const fs = require('fs');
@@ -1115,7 +1114,10 @@ exports.projectTrackDELETE = (req, res, next) => {
 };
 exports.backendRender = (req, res, next) => {
 	console.log("req:", req);
-	
+	// exec(`cd ${projectPath} && melt project.mlt -consumer avformat:output.mp4 acodec=aac vcodec=libx264 > stdout.log 2> stderr.log`, (err) => {
+	// 	if (err) log.error(`exec error: ${err}`);
+	// 	else log.info(`Project "${req.params.projectID}" finished`);
+	// });
 }
 exports.renderCanvas = (req, res, next) => {
 	console.log("renderCanvas res:",res, ",next:", next);
