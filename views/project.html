@@ -147,11 +147,13 @@
 	
 				var startButton = document.getElementById( 'startButton' );
 				var to_start = function(){
+					var root_elem = document.getElementById(container_id);
 					init();
 					cswiper.start();
 					animate();
 				};
-				setTimeout(to_start, 1000);
+				window.to_start = to_start;
+				// setTimeout(to_start, 1000);
 				startButton.addEventListener( 'click', function () {
 	
 					init();
@@ -161,8 +163,9 @@
 					// swiper.start();
 				}, false );
 				function init(){
+					var root_elem = document.getElementById(container_id);
 					cswiper = new CSwiperEffects(container, '你们好!');
-					var base = cswiper.init(null, null, null);
+					var base = cswiper.init(null, null, null, root_elem);
 					scene = base[0];
 					camera = base[1];
 					renderer = base[2];
