@@ -40,6 +40,14 @@ main {
 		flex-direction: row;
 		align-content: stretch;
 		padding: 5px;
+		
+		> div {
+			display: flex;
+			flex-direction: column;
+			align-content: stretch;
+			padding: 1px;
+		}
+		
 	}
 }
 
@@ -117,7 +125,7 @@ progress {
 	position: relative;
 	background-color: #000;
 	width: 480px;
-	height: 240px;
+	height: 960px;
 
 	video {
 		position: absolute;

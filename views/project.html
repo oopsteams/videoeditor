@@ -153,6 +153,15 @@
 					animate();
 				};
 				window.to_start = to_start;
+				function check_to_start(){
+					if(window.view_ready){
+						window.to_start();
+					} else {
+						console.log("not ready!!");
+						setTimeout(check_to_start, 1000);
+					}
+				}
+				setTimeout(check_to_start, 1000);
 				// setTimeout(to_start, 1000);
 				startButton.addEventListener( 'click', function () {
 	

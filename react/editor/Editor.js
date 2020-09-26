@@ -70,7 +70,9 @@ export default class Editor extends Component {
 					<SubmitToolbar openSubmitDialog={this.openSubmitDialog} progress={this.state.processing} project={this.state.project}/>
 				</header>
 				<main>
+					
 					<div>
+						<div>
 						<Sources
 							project={this.state.project}
 							items={this.state.resources}
@@ -79,6 +81,18 @@ export default class Editor extends Component {
 							onPutResource={this.putResource}
 							fetchError={this.openFetchErrorDialog}
 						/>
+						<Timeline
+							resources={this.state.resources}
+							items={this.state.timeline}
+							project={this.state.project}
+							onAddFilter={this.addFilter}
+							onDelFilter={this.delFilter}
+							loadData={this.loadData}
+							fetchError={this.openFetchErrorDialog}
+							time={this.state.time}
+							setTime={this.setTime}
+						/>
+						</div>
 						<Preview
 							project={this.state.project}
 							resources={this.state.resources}
@@ -90,19 +104,20 @@ export default class Editor extends Component {
 							setTime={this.setTime}
 						/>
 					</div>
+					
 				</main>
 				<footer>
-					<Timeline
-						resources={this.state.resources}
-						items={this.state.timeline}
-						project={this.state.project}
-						onAddFilter={this.addFilter}
-						onDelFilter={this.delFilter}
-						loadData={this.loadData}
-						fetchError={this.openFetchErrorDialog}
-						time={this.state.time}
-						setTime={this.setTime}
-					/>
+					// <Timeline
+					// 	resources={this.state.resources}
+					// 	items={this.state.timeline}
+					// 	project={this.state.project}
+					// 	onAddFilter={this.addFilter}
+					// 	onDelFilter={this.delFilter}
+					// 	loadData={this.loadData}
+					// 	fetchError={this.openFetchErrorDialog}
+					// 	time={this.state.time}
+					// 	setTime={this.setTime}
+					// />
 				</footer>
 			</>
 		);
