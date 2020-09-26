@@ -14,7 +14,9 @@ export default class Preview extends Component {
 		super(props);
 		this.stop = this.stop.bind(this);
 	}
-
+	componentDidMount(){
+		console.log("Preview Render ok!!!!", document.getElementById("preview-player"));
+	}
 	render() {
 		const timestamp = TimelineModel.dateToString(this.props.time);
 
