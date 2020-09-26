@@ -107,17 +107,7 @@ export default class Editor extends Component {
 					
 				</main>
 				<footer>
-					// <Timeline
-					// 	resources={this.state.resources}
-					// 	items={this.state.timeline}
-					// 	project={this.state.project}
-					// 	onAddFilter={this.addFilter}
-					// 	onDelFilter={this.delFilter}
-					// 	loadData={this.loadData}
-					// 	fetchError={this.openFetchErrorDialog}
-					// 	time={this.state.time}
-					// 	setTime={this.setTime}
-					// />
+					
 				</footer>
 			</>
 		);
