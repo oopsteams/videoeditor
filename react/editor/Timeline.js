@@ -149,7 +149,7 @@ export default class Timeline extends Component {
 
 	render() {
 		return (
-			<>
+			<div className"timeline-bd">
 				<button onClick={this.buttonFilter}><i className="material-icons" aria-hidden="true">flare</i>滤镜</button>
 				{/*<button><i className="material-icons" aria-hidden="true">photo_filter</i>Přidat přechod</button>*/}
 				<button onClick={this.buttonSplit}><i className="material-icons" aria-hidden="true">flip</i>分割点</button>
@@ -167,7 +167,7 @@ export default class Timeline extends Component {
 					onDel={(filter) => this.props.onDelFilter(filter)}
 					fetchError={this.props.fetchError}
 				/>}
-			</>
+			<div/>
 		);
 	}
 
