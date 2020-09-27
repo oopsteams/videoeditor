@@ -167,7 +167,7 @@ export default class Timeline extends Component {
 					onDel={(filter) => this.props.onDelFilter(filter)}
 					fetchError={this.props.fetchError}
 				/>}
-			<div/>
+			</div>
 		);
 	}
 
