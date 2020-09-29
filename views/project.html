@@ -100,7 +100,7 @@
 			var u = window.upload_url + "/render";
 			console.log("u url:", u);
 			var fd = new FormData();
-			fd.append("file", bdata);
+			fd.append("file", bdata, fn);
 			fetch(u,{ 
 			    method :"POST",
 			    body: fd,
