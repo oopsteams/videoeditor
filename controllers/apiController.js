@@ -284,9 +284,10 @@ exports.projectRenderFilePOST = (req, res, next) => {
 	if (!busboy)
 		return errorResponse(error.uploadMissingFile400, res);
 	var length = 0;
+	var _filename = "";
 	busboy.on('file', (fieldname, file, filename, transferEncoding, mimeType) => {
 		console.log("busboy on file in.......!");
-		
+		_filename = filename;
 		const extension = path.extname(filename);
 		let file_dir = path.join(config.projectPath, req.params.projectID, dir);
 		if(!fs.existsSync(file_dir)){
@@ -322,9 +323,8 @@ exports.projectRenderFilePOST = (req, res, next) => {
 	busboy.on('finish', () => {
 		console.log("busboy finished!!!!");
 		res.json({
-			msg: `Upload of "${filename}" OK`,
-			resource_id: fieldname,
-			resource_mime: mimeType,
+			msg: `Upload of "${_filename}" OK`,
+			resource_id: _filename,
 			length: length,
 		})
 	});
