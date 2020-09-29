@@ -287,6 +287,10 @@ exports.projectRenderFilePOST = (req, res, next) => {
 		console.log("busboy on file in.......!");
 		
 		const extension = path.extname(filename);
+		let file_dir = path.join(config.projectPath, req.params.projectID, dir);
+		if(!fs.existsSync(file_dir)){
+			fs.mkdirSync(file_dir);
+		}
 		let filepath = path.join(config.projectPath, req.params.projectID, dir, filename);
 		// if (extension.length > 1) filepath += extension;
 		
@@ -311,10 +315,10 @@ exports.projectRenderFilePOST = (req, res, next) => {
 		});
 	});
 	busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated, encoding, mimetype) {
-	      console.log('Field [' + fieldname + ']: value: ' + inspect(val));
+	      console.log('Field [' + fieldname + ']: value: ', val);
 	    });
 	busboy.on('finish', () => {
-		
+		console.log("busboy finished!!!!");
 	});
 	return req.pipe(busboy); // Pipe it trough busboy
 }
@@ -659,7 +663,7 @@ exports.projectFilterDELETE = (req, res, next) => {
 			}
 
 			projectManager.save(req.params.projectID, root.outerHTML, release).then(
-				() => res.json({ msg: 'Filtr odebrán' }),
+				() => res.json({ msg: '过滤器已拆下' }),
 				err => next(err)
 			);
 		},
