@@ -97,13 +97,13 @@
 		    }
 		}
 		var _upload_blob = function(fn, bdata){
-			var u = window.upload_url + "/" + fn;
+			var u = window.upload_url + "/render";
 			console.log("u url:", u);
 			var fd = new FormData();
 			fd.append("file", bdata);
 			fetch(u,{ 
 			    method :"POST",
-			    body: formData,
+			    body: fd,
 			    headers:{
 			        "Content-Type": "multipart/form-data"
 			    } 
@@ -511,7 +511,7 @@
 										window.uploader.start();
 					            });
 								*/
-							   // blob_cache.push(blob);
+							   blob_cache.push(blob);
 							   if(blob_cache.length<len){
 								   if(cb)cb();
 							   } else {
