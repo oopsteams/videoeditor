@@ -270,7 +270,7 @@ exports.projectPUT = (req, res, next) => {
 exports.projectRenderFilePOST = (req, res, next) => {
 	var pid = req.params.projectID;
 	var dir = req.params.dir;
-	console.log("projectRenderFilePOST in, req:", req);
+	console.log("projectRenderFilePOST in, req.headers:", req.headers);
 	let busboy;
 	try {
 		busboy = new Busboy({
