@@ -402,7 +402,7 @@ exports.projectFileDELETE = (req, res, next) => {
 			producer.remove();
 
 			projectManager.save(req.params.projectID, root.outerHTML, release).then(
-				() => res.json({ msg: 'Zdroj byl úspěšně odebrán' }),
+				() => res.json({ msg: '已成功删除源' }),
 				err => next(err)
 			);
 		},
@@ -475,7 +475,7 @@ exports.projectFilePUT = (req, res, next) => {
 
 			projectManager.save(req.params.projectID, root.outerHTML, release).then(
 				() => res.json({
-					msg: 'Položka přidána na časovou osu',
+					msg: '项目已添加到时间线',
 					timeline: req.body.track,
 				}),
 				err => next(err)
@@ -569,7 +569,7 @@ exports.projectFilterPOST = (req, res, next) => {
 			}
 
 			projectManager.save(req.params.projectID, root.outerHTML, release).then(
-				() => res.json({ msg: 'Filtr přidán' }),
+				() => res.json({ msg: '已添加过滤器' }),
 				err => next(err)
 			);
 		},
@@ -791,7 +791,7 @@ exports.projectTransitionPOST = (req, res, next) => {
 			}
 
 			projectManager.save(req.params.projectID, root.outerHTML, release).then(
-				() => res.json({ msg: 'Přechod aplikován' }),
+				() => res.json({ msg: '转换已应用' }),
 				err => next(err)
 			);
 		},
@@ -861,7 +861,7 @@ exports.projectItemDELETE = (req, res, next) => {
 			}
 
 			projectManager.save(req.params.projectID, root.outerHTML, release).then(
-				() => res.json({ msg: 'Položka smazána' }),
+				() => res.json({ msg: '项目已删除' }),
 				err => next(err)
 			);
 		},
