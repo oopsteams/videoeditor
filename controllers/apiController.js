@@ -278,7 +278,7 @@ exports.projectRenderFilePOST = (req, res, next) => {
 			highWaterMark: 2 * 1024 * 1024, // Set 2MiB buffer
 			limits: { files: 1 },
 		});
-	} catch (_) {/* continue */}
+	} catch (e) {/* continue */console.log("new busbody err:", e);}
 	if (!busboy)
 		return errorResponse(error.uploadMissingFile400, res);
 	busboy.on('file', (fieldname, file, filename, transferEncoding, mimeType) => {
