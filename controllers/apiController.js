@@ -273,11 +273,13 @@ exports.projectRenderFilePOST = (req, res, next) => {
 	console.log("projectRenderFilePOST in, req.headers:", req.headers);
 	let busboy;
 	try {
+		// busboy = new Busboy({
+		// 	headers: req.headers,
+		// 	highWaterMark: 2 * 1024 * 1024, // Set 2MiB buffer
+		// 	limits: { files: 1 },
+		// });
 		busboy = new Busboy({
-			headers: req.headers,
-			highWaterMark: 2 * 1024 * 1024, // Set 2MiB buffer
-			limits: { files: 1 },
-		});
+			headers: req.headers});
 	} catch (e) {/* continue */console.log("new busbody err:", e);}
 	if (!busboy)
 		return errorResponse(error.uploadMissingFile400, res);
@@ -295,8 +297,17 @@ exports.projectRenderFilePOST = (req, res, next) => {
 		file.pipe(fstream);
 		
 		fstream.on('finish', () => {
-			
+			log.info(`Upload of "${filename}" finished`);
 		});
+		fstream.on('error', () => errorResponse(error.projectNotFound404, res));
+		file.on('data', function(data) {
+			console.log('File [' + fieldname + '] got ' + data.length + ' bytes');
+		  });
+	});
+	busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated, encoding, mimetype) {
+	      console.log('Field [' + fieldname + ']: value: ' + inspect(val));
+	    });
+	busboy.on('finish', () => {
 		
 	});
 	return req.pipe(busboy); // Pipe it trough busboy
