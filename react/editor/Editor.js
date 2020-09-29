@@ -73,14 +73,6 @@ export default class Editor extends Component {
 					
 					<div>
 						<div>
-							<Sources
-								project={this.state.project}
-								items={this.state.resources}
-								onAddResource={this.addResource}
-								onDelResource={this.delResource}
-								onPutResource={this.putResource}
-								fetchError={this.openFetchErrorDialog}
-							/>
 							<Timeline
 								resources={this.state.resources}
 								items={this.state.timeline}
@@ -92,6 +84,15 @@ export default class Editor extends Component {
 								time={this.state.time}
 								setTime={this.setTime}
 							/>
+							<Sources
+								project={this.state.project}
+								items={this.state.resources}
+								onAddResource={this.addResource}
+								onDelResource={this.delResource}
+								onPutResource={this.putResource}
+								fetchError={this.openFetchErrorDialog}
+							/>
+							
 						</div>
 						<Preview
 							project={this.state.project}

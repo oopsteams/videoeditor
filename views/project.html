@@ -96,7 +96,28 @@
 		        }
 		    }
 		}
-		
+		var _upload_blob = function(fn, bdata){
+			var u = window.upload_url + "/" + fn;
+			console.log("u url:", u);
+			var fd = new FormData();
+			fd.append("file", bdata);
+			fetch(u,{ 
+			    method :"POST",
+			    body: formData,
+			    headers:{
+			        "Content-Type": "multipart/form-data"
+			    } 
+			}).then(response => response.json())
+			.then(data => {
+				if (typeof data.err === 'undefined') {
+					console.log("res data:", data);
+				}
+				else {
+					alert(`${data.err}\n\n${data.msg}`);
+				}
+			})
+			.catch(error => this.props.fetchError(error.message));
+		}
 		// 每片上传成功后执行
 		function successPerUpload(resp, chunks, query) {
 		    if (resp.isFinish === true) {
@@ -498,6 +519,7 @@
 								   // console.log("blob_cache:", blob_cache);
 								   setTimeout(function(){
 									   //window.loop_uploader();
+									   _upload_blob('0001.png', blob_cache[0]);
 								   }, 2000);
 							   }
 							   

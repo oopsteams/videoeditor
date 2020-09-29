@@ -267,6 +267,29 @@ exports.projectPUT = (req, res, next) => {
 };
 
 
+exports.projectRenderFilePOST = (req, res, next) => {
+	var pid = req.params.projectID;
+	var dir = req.params.dir;
+	let busboy;
+	try {
+		busboy = new Busboy({
+			headers: req.headers,
+			highWaterMark: 2 * 1024 * 1024, // Set 2MiB buffer
+			limits: { files: 1 },
+		});
+	} catch (_) {/* continue */}
+	if (!busboy)
+		return errorResponse(error.uploadMissingFile400, res);
+	busboy.on('file', (fieldname, file, filename, transferEncoding, mimeType) => {
+		const extension = path.extname(filename);
+		let filepath = path.join(config.projectPath, req.params.projectID, dir, filename);
+		// if (extension.length > 1) filepath += extension;
+		
+		log.info(`Upload of "${filepath}" started`);
+		
+	});
+}
+
 exports.projectFilePOST = (req, res, next) => {
 
 	let busboy;

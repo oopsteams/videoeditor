@@ -19,6 +19,7 @@ export default class Preview extends Component {
 		// if(window.to_start){
 		// 	window.to_start();
 		// }
+		window.upload_url = `/api/project/${this.props.project}/file`;
 		window.view_ready=true;
 	}
 	render() {
