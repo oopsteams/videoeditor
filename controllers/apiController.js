@@ -285,9 +285,18 @@ exports.projectRenderFilePOST = (req, res, next) => {
 		let filepath = path.join(config.projectPath, req.params.projectID, dir, filename);
 		// if (extension.length > 1) filepath += extension;
 		
+		const fstream = fs.createWriteStream(filepath);
+		
 		log.info(`Upload of "${filepath}" started`);
 		
+		file.pipe(fstream);
+		
+		fstream.on('finish', () => {
+			
+		});
+		
 	});
+	return req.pipe(busboy); // Pipe it trough busboy
 }
 
 exports.projectFilePOST = (req, res, next) => {
