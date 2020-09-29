@@ -283,6 +283,7 @@ exports.projectRenderFilePOST = (req, res, next) => {
 	} catch (e) {/* continue */console.log("new busbody err:", e);}
 	if (!busboy)
 		return errorResponse(error.uploadMissingFile400, res);
+	var length = 0;
 	busboy.on('file', (fieldname, file, filename, transferEncoding, mimeType) => {
 		console.log("busboy on file in.......!");
 		
@@ -306,6 +307,7 @@ exports.projectRenderFilePOST = (req, res, next) => {
 		});
 		fstream.on('error', () => errorResponse(error.projectNotFound404, res));
 		file.on('data', function(data) {
+			length = data.length;
 			console.log('File [' + fieldname + '] got ' + data.length + ' bytes');
 			console.log("file data:", data);
 			fstream.write(data);
@@ -319,6 +321,12 @@ exports.projectRenderFilePOST = (req, res, next) => {
 	    });
 	busboy.on('finish', () => {
 		console.log("busboy finished!!!!");
+		res.json({
+			msg: `Upload of "${filename}" OK`,
+			resource_id: fieldname,
+			resource_mime: mimeType,
+			length: length,
+		})
 	});
 	return req.pipe(busboy); // Pipe it trough busboy
 }
