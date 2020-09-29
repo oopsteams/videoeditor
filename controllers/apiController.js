@@ -293,6 +293,7 @@ exports.projectRenderFilePOST = (req, res, next) => {
 		const fstream = fs.createWriteStream(filepath);
 		
 		log.info(`Upload of "${filepath}" started`);
+		console.log("filepath:", filepath);
 		
 		file.pipe(fstream);
 		
@@ -302,7 +303,11 @@ exports.projectRenderFilePOST = (req, res, next) => {
 		fstream.on('error', () => errorResponse(error.projectNotFound404, res));
 		file.on('data', function(data) {
 			console.log('File [' + fieldname + '] got ' + data.length + ' bytes');
+			console.log("file data:", data);
 		  });
+		file.on('end', function() {
+		        console.log('File [' + fieldname + '] Finished');
+		});
 	});
 	busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated, encoding, mimetype) {
 	      console.log('Field [' + fieldname + ']: value: ' + inspect(val));
