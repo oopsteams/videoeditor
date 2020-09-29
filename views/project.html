@@ -103,7 +103,7 @@
 			fd.append("file", bdata, fn);
 			console.log("formdata:", fd);
 			var headers = {
-			    // "Content-Type": "multipart/form-data"
+			    "Content-Type": "multipart/form-data; boundary=----"
 			}
 			fetch(u,{ 
 			    method :"POST",
@@ -118,7 +118,7 @@
 					alert(`${data.err}\n\n${data.msg}`);
 				}
 			})
-			.catch(error => this.props.fetchError(error.message));
+			.catch(error => console.log(error.message));
 		}
 		// 每片上传成功后执行
 		function successPerUpload(resp, chunks, query) {
