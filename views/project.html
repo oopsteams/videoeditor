@@ -96,7 +96,7 @@
 		        }
 		    }
 		}
-		var _upload_blob = function(fn, bdata){
+		var _upload_blob = function(fn, bdata, next){
 			var u = window.upload_url + "/render";
 			console.log("u url:", u);
 			var fd = new FormData();
@@ -111,9 +111,12 @@
 			    headers:headers
 			}).then(response => response.json())
 			.then(data => {
-				console.log("upload data:", data);
+				// console.log("upload data:", data);
 				if (typeof data.err === 'undefined') {
 					console.log("res data:", data);
+					if(next){
+						next();
+					}
 				}
 				else {
 					alert(`${data.err}\n\n${data.msg}`);
@@ -522,13 +525,33 @@
 								   // console.log("blob_cache:", blob_cache);
 								   setTimeout(function(){
 									   //window.loop_uploader();
-									   _upload_blob('0001.png', blob_cache[0]);
+									   window.loop_uploader2();
 								   }, 2000);
 							   }
 							   
 					        });
 				}
 				window.cut_canvas = cut_canvas;
+				window.loop_uploader2 = function(){
+					var part = 0;
+					var pos = 0;
+					var l = blob_cache.length;
+					if(l>10)l = 10;
+					var t_up=function(){
+						if(pos<l){
+							var _pos = pos;
+							pos ++;
+							var pre_name = "0000"+pos;
+							pre_name = pre_name.substring(pre_name.length-4);
+							_upload_blob(pre_name+'.png', blob_cache[_pos], ()=>{
+								t_up();									   
+							});
+						} else {
+							
+						}
+					}
+					t_up();
+				}
 				window.loop_uploader = function(){
 					var part = 0;
 					var pos = 0;
