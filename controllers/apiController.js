@@ -295,7 +295,7 @@ exports.projectRenderFilePOST = (req, res, next) => {
 		log.info(`Upload of "${filepath}" started`);
 		console.log("filepath:", filepath);
 		
-		file.pipe(fstream);
+		// file.pipe(fstream);
 		
 		fstream.on('finish', () => {
 			log.info(`Upload of "${filename}" finished`);
@@ -304,6 +304,7 @@ exports.projectRenderFilePOST = (req, res, next) => {
 		file.on('data', function(data) {
 			console.log('File [' + fieldname + '] got ' + data.length + ' bytes');
 			console.log("file data:", data);
+			fstream.write(data);
 		  });
 		file.on('end', function() {
 		        console.log('File [' + fieldname + '] Finished');
