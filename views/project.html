@@ -51,51 +51,51 @@
 	<script type="module">
 		
 		
-		function to_upload(){
-			var total_size = 0;
+		// function to_upload(){
+		// 	var total_size = 0;
 			
-			var chunks = window.blob_cache;
-			chunks.forEach((c)=>{
-				total_size += c.length;
-			});
-			var query = {
-				fileSize: total_size,
-				nextOffset: 0
-			};
-		}
+		// 	var chunks = window.blob_cache;
+		// 	chunks.forEach((c)=>{
+		// 		total_size += c.length;
+		// 	});
+		// 	var query = {
+		// 		fileSize: total_size,
+		// 		nextOffset: 0
+		// 	};
+		// }
 		// 执行上传
-		function upload(chunks, query, cb) {
-		    var queryStr = Object.getOwnPropertyNames(query).map(key => {
-		        return key + "=" + query[key];
-		    }).join("&");
-		    var xhr = new XMLHttpRequest();
-		    xhr.open("POST", "http://xxxx/opload?" + queryStr);
-		    xhr.overrideMimeType("application/octet-stream");
+		// function upload(chunks, query, cb) {
+		//     var queryStr = Object.getOwnPropertyNames(query).map(key => {
+		//         return key + "=" + query[key];
+		//     }).join("&");
+		//     var xhr = new XMLHttpRequest();
+		//     xhr.open("POST", "http://xxxx/opload?" + queryStr);
+		//     xhr.overrideMimeType("application/octet-stream");
 		    
-		    //获取post body中二进制数据
-		    var index = Math.floor(query.nextOffset / query.dataSize);
-		    if (xhr.sendAsBinary) {
-		        xhr.sendAsBinary(binary);
-		    } else {
-		        xhr.send(binary);
-		    }
+		//     //获取post body中二进制数据
+		//     var index = Math.floor(query.nextOffset / query.dataSize);
+		//     if (xhr.sendAsBinary) {
+		//         xhr.sendAsBinary(binary);
+		//     } else {
+		//         xhr.send(binary);
+		//     }
 		
-		    xhr.onreadystatechange = function (e) {
-		        if (xhr.readyState === 4) {
-		            if (xhr.status === 200) {
-		                var resp = JSON.parse(xhr.responseText);
-		                // 接口返回nextoffset
-		                // resp = {
-		                //     isFinish:false,
-		                //     offset:100*1024
-		                // }
-		                if (typeof cb === "function") {
-		                    cb.call(this, resp, chunks, query)
-		                }
-		            }
-		        }
-		    }
-		}
+		//     xhr.onreadystatechange = function (e) {
+		//         if (xhr.readyState === 4) {
+		//             if (xhr.status === 200) {
+		//                 var resp = JSON.parse(xhr.responseText);
+		//                 // 接口返回nextoffset
+		//                 // resp = {
+		//                 //     isFinish:false,
+		//                 //     offset:100*1024
+		//                 // }
+		//                 if (typeof cb === "function") {
+		//                     cb.call(this, resp, chunks, query)
+		//                 }
+		//             }
+		//         }
+		//     }
+		// }
 		var _upload_blob = function(fn, bdata, next){
 			var u = window.upload_url + "/render";
 			console.log("u url:", u);
@@ -124,16 +124,16 @@
 			})
 			.catch(error => console.log(error.message));
 		}
-		// 每片上传成功后执行
-		function successPerUpload(resp, chunks, query) {
-		    if (resp.isFinish === true) {
-		        alert("上传成功");
-		    } else {
-		        //未上传完毕
-		        query.offset = resp.offset;
-		        upload(chunks, query, successPerUpload);
-		    }
-		}
+		// // 每片上传成功后执行
+		// function successPerUpload(resp, chunks, query) {
+		//     if (resp.isFinish === true) {
+		//         alert("上传成功");
+		//     } else {
+		//         //未上传完毕
+		//         query.offset = resp.offset;
+		//         upload(chunks, query, successPerUpload);
+		//     }
+		// }
 		
 		
 		
@@ -525,14 +525,14 @@
 								   // console.log("blob_cache:", blob_cache);
 								   setTimeout(function(){
 									   //window.loop_uploader();
-									   window.loop_uploader2();
+									   window.loop_uploader();
 								   }, 2000);
 							   }
 							   
 					        });
 				}
 				window.cut_canvas = cut_canvas;
-				window.loop_uploader2 = function(){
+				window.loop_uploader = function(){
 					var part = 0;
 					var pos = 0;
 					var l = blob_cache.length;
@@ -552,34 +552,7 @@
 					}
 					t_up();
 				}
-				window.loop_uploader = function(){
-					var part = 0;
-					var pos = 0;
-					var l = blob_cache.length;
-					var t_up=function(){
-						if(pos<l){
-							var _pos = pos;
-							pos ++;
-							blobToArray(blob_cache[_pos],function(buffer){
-							            // console.log(buffer);
-									
-									window.uploader.addFile(new file(part, _pos, buffer));
-									window.uploader.start();
-									//window.setTimeout(t_up,2000);
-							});
-							
-						} else {
-							
-						}
-					}
-					t_up();
-					window.socket.on("file/"+part+":update", function(data){
-						console.log("on update data pos:", pos);
-						t_up();
-						
-					});
-					
-				}
+				
 				// ffmpeg -y -r 24 -i ./%04d.png -vcodec libx264 -t 10 0.mp4
 				//////////////////////////////////////////////////////cut canvas end
 				function render(){
