@@ -11,6 +11,7 @@
     "dev-build": "./node_modules/.bin/webpack -wd",
     "eslint": "npx eslint controllers/ models/ react/ test/ config.js router.js server.js",
     "test": "mocha --parallel"
+	
   },
   "repository": {
     "type": "git",

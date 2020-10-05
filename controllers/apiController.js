@@ -266,6 +266,9 @@ exports.projectPUT = (req, res, next) => {
 
 };
 
+exports.projectBuildRenderVideoPOST = (req, res, next) => {
+	
+};
 
 exports.projectRenderFilePOST = (req, res, next) => {
 	var pid = req.params.projectID;
