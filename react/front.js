@@ -31,7 +31,7 @@ window.uploader = new wsUploader.uploader(window.socket, window.app);
 // });
 if (document.getElementById('newProjectDialog') !== null) {
 	// Landing page
-	ReactDOM.render(<div><NewProjectDialog /><NewTempalteDialog /></div>, document.getElementById('newProjectDialog'));
+	ReactDOM.render(<div><NewProjectDialog /><NewTemplateDialog /></div>, document.getElementById('newProjectDialog'));
 }
 else {
 	// Project page
