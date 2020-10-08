@@ -6,6 +6,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import NewProjectDialog from './newProject/NewProjectDialog';
+import NewTemplateDialog from './newProject/NewTemplateDialog';
 import Editor from './editor/Editor';
 import socket from './editor/socket.io';
 import wsUploader from './editor/uploader.socket'
@@ -30,7 +31,7 @@ window.uploader = new wsUploader.uploader(window.socket, window.app);
 // });
 if (document.getElementById('newProjectDialog') !== null) {
 	// Landing page
-	ReactDOM.render(<NewProjectDialog />, document.getElementById('newProjectDialog'));
+	ReactDOM.render(<div><NewProjectDialog /><NewTempalteDialog /></div>, document.getElementById('newProjectDialog'));
 }
 else {
 	// Project page
