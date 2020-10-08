@@ -60,19 +60,18 @@ export default class NewTemplateDialog extends Component {
 			fetchError: '',
 		});
 	}
-
+	// <Modal
+	// 	isOpen={true}
+	// 	contentLabel="新建模版"
+	// 	className={'modal'}
+	// 	overlayClassName={'null'}
+	// >
 	render() {
 		return (
 			<div>
 				{this.state.showFetchError && <FetchErrorDialog msg={this.state.fetchError} onClose={this.closeFetchErrorDialog}/>}
-				// <Modal
-				// 	isOpen={true}
-				// 	contentLabel="新建模版"
-				// 	className={'modal'}
-				// 	overlayClassName={'null'}
-				// >
+				
 				<main>
-
 					<h2 className={'logo'}><img src={'/icons/favicon.svg'} alt={'logo'}/>Videoeditor</h2>
 					<div>
 						<button onClick={() => this.createTempalte()}>创建新模版</button>

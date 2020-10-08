@@ -64,17 +64,17 @@ export default class NewProjectDialog extends Component {
 			fetchError: '',
 		});
 	}
-
+	// <Model
+	// 	isOpen={true}
+	// 	contentLabel="新建项目"
+	// 	className={'modal'}
+	// 	overlayClassName={'null'}
+	// >
 	render() {
 		return (
 			<div>
 				{this.state.showFetchError && <FetchErrorDialog msg={this.state.fetchError} onClose={this.closeFetchErrorDialog}/>}
-				// <Model
-				// 	isOpen={true}
-				// 	contentLabel="新建项目"
-				// 	className={'modal'}
-				// 	overlayClassName={'null'}
-				// >
+				
 				<main>
 
 					<h2 className={'logo'}><img src={'/icons/favicon.svg'} alt={'logo'}/>Videoeditor</h2>
