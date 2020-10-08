@@ -11,7 +11,6 @@
     "dev-build": "./node_modules/.bin/webpack -wd",
     "eslint": "npx eslint controllers/ models/ react/ test/ config.js router.js server.js",
     "test": "mocha --parallel"
-	
   },
   "repository": {
     "type": "git",
@@ -34,7 +33,7 @@
     "@egjs/hammerjs": "^2.0.0",
     "autoprefixer": "^9.8.4",
     "axios": "^0.19.2",
-	"lowdb": "^1.0.0",
+    "lowdb": "^1.0.0",
     "babel-loader": "^8.1.0",
     "body-parser": "^1.19.0",
     "busboy": "^0.3.1",
