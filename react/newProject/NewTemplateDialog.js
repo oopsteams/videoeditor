@@ -65,12 +65,13 @@ export default class NewTemplateDialog extends Component {
 		return (
 			<div>
 				{this.state.showFetchError && <FetchErrorDialog msg={this.state.fetchError} onClose={this.closeFetchErrorDialog}/>}
-				<main
-					isOpen={true}
-					contentLabel="新建模版"
-					className={'modal'}
-					overlayClassName={'null'}
-				>
+				// <Modal
+				// 	isOpen={true}
+				// 	contentLabel="新建模版"
+				// 	className={'modal'}
+				// 	overlayClassName={'null'}
+				// >
+				<main>
 
 					<h2 className={'logo'}><img src={'/icons/favicon.svg'} alt={'logo'}/>Videoeditor</h2>
 					<div>
