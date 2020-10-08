@@ -8,7 +8,7 @@ import Modal from 'react-modal';
 import {server} from '../../config';
 import FetchErrorDialog from '../editor/FetchErrorDialog';
 
-Modal.setAppElement(document.body);
+// Modal.setAppElement(document.body);
 
 export default class NewProjectDialog extends Component {
 
@@ -69,7 +69,7 @@ export default class NewProjectDialog extends Component {
 		return (
 			<div>
 				{this.state.showFetchError && <FetchErrorDialog msg={this.state.fetchError} onClose={this.closeFetchErrorDialog}/>}
-				<Modal
+				<main
 					isOpen={true}
 					contentLabel="新建项目"
 					className={'modal'}
@@ -80,7 +80,7 @@ export default class NewProjectDialog extends Component {
 					<div>
 						<button onClick={() => this.createProject()}>创建新项目</button>
 					</div>
-				</Modal>
+				</main>
 			</div>
 		);
 	}

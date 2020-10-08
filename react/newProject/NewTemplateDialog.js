@@ -65,7 +65,7 @@ export default class NewTemplateDialog extends Component {
 		return (
 			<div>
 				{this.state.showFetchError && <FetchErrorDialog msg={this.state.fetchError} onClose={this.closeFetchErrorDialog}/>}
-				<Modal
+				<main
 					isOpen={true}
 					contentLabel="新建模版"
 					className={'modal'}
@@ -76,7 +76,7 @@ export default class NewTemplateDialog extends Component {
 					<div>
 						<button onClick={() => this.createTempalte()}>创建新模版</button>
 					</div>
-				</Modal>
+				</main>
 			</div>
 		);
 	}
