@@ -80,3 +80,4 @@ export default class NewTemplateDialog extends Component {
 			</div>
 		);
 	}
+}
