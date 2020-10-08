@@ -16,3 +16,4 @@ docs/
 views/
 public/
 .DS_Store
+test/
