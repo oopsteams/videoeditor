@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 import {server} from '../../config';
 import FetchErrorDialog from '../editor/FetchErrorDialog';
 
-Modal.setAppElement(document.body);
+// Modal.setAppElement(document.body);
 
 export default class NewTemplateDialog extends Component {
 
