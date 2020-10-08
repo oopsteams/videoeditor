@@ -26,6 +26,8 @@ router.post('/api/font', apiController.fontPOST);
 
 router.post('/api/project', apiController.projectPOST);
 
+router.post('/api/template', apiController.templatePOST)
+
 router.get('/api/project/:projectID', apiController.projectGET);
 
 router.put('/api/project/:projectID', apiController.projectPUT);

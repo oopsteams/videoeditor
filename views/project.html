@@ -536,7 +536,7 @@
 					var part = 0;
 					var pos = 0;
 					var l = blob_cache.length;
-					if(l>10)l = 10;
+					// if(l>10)l = 10;
 					var t_up=function(){
 						if(pos<l){
 							var _pos = pos;
@@ -555,6 +555,7 @@
 				
 				// ffmpeg -y -r 24 -i ./%04d.png -vcodec libx264 -t 10 0.mp4
 				//////////////////////////////////////////////////////cut canvas end
+				var test_tag = 0;
 				function render(){
 					// var t = effects.render(scene, camera, renderer);
 					camera.lookAt( scene.position );
@@ -565,7 +566,11 @@
 					let canvas = renderer.domElement;
 					if(cswiper.record){
 						cut_canvas(canvas, function(){
-							requestAnimationFrame( window.animate );
+							if(test_tag<120){
+								requestAnimationFrame( window.animate );
+								test_tag++;
+							}
+							
 						});
 					} else {
 						requestAnimationFrame( window.animate );

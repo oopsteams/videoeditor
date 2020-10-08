@@ -27,7 +27,7 @@ Currently set to:
 - Audio codec: aac
 - Video codec: libx264
 ffmpeg -f image2 -y -r 24 -i ./%04d.png -vcodec libx264 -aspect 16:9 -t 10 b.mp4
-ffmpeg -f image2 -y -r 24 -i ./%04d.png -vcodec libx264 -s 480x960 -pix_fmt yuv420p -t 12 c.mp4
+ffmpeg -i in.mp3 -f image2 -y -r 24 -i ./%04d.png -vcodec libx264 -s 480x960 -pix_fmt yuv420p -t 12 c.mp4
 ffmpeg -i b.mp4 -pix_fmt yuv420p -c:v libx264 out.mp4
 ## Installation
 

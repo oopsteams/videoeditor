@@ -25,6 +25,23 @@ exports.default = (req, res) => {
 
 };
 
+exports.templatePOST = (req, res, next) => {
+	var template_dir = "temp";
+	var base_path = path.join(config.projectPath, template_dir);
+	if(!fs.existsSync(base_path)){
+		fs.mkdir(base_path, { recursive: true }, (err) => {
+			if (err) return next(err);
+			res.json({ tempalte: "0" });
+			// projectManager.save(projectID, projectManager.init()).then(
+			// 	() => res.json({ project: projectID }),
+			// 	err => next(err)
+			// );
+		});
+	} else {
+		res.json({ tempalte: "0" });
+	}
+	
+};
 
 exports.projectPOST = (req, res, next) => {
 
