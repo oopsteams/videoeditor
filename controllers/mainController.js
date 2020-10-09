@@ -9,6 +9,7 @@ const path = require('path');
 
 exports.main = (req, res) => res.render('main', {});
 exports.project = (req, res) => res.render('project', {});
+exports.template = (req, res) => res.render('template', {});
 
 exports.finished = (req, res) => {
 	const outputFile = path.resolve(path.join(config.projectPath, req.params.projectID, 'output.mp4'));
