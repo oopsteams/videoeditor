@@ -2,7 +2,10 @@
  * @file Controller for REST API
  * @author Vladan Kudlac <vladankudlac@gmail.com>
  */
-
+const low = require('lowdb');
+const FileSync = require('lowdb/adapters/FileSync');
+const adapter = new FileSync('db.json');
+const db = low(adapter);
 import {config} from '../config';
 import mltxmlManager from '../models/mltxmlManager';
 import fileManager from '../models/fileManager';
@@ -18,7 +21,7 @@ const fs = require('fs');
 const path = require('path');
 const { exec } = require('child_process');
 const Busboy = require('busboy');
-
+db.defaults({ render: {} }).write();
 exports.default = (req, res) => {
 
 	res.json({ msg: 'For API documentation see https://github.com/kudlav/videoeditor' });
