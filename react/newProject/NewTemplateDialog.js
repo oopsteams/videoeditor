@@ -28,7 +28,8 @@ export default class NewTemplateDialog extends Component {
 			.then(response => response.json())
 			.then(data => {
 				if (typeof data.err === 'undefined') {
-					//window.location = `${server.serverUrl}/template/${data.project}`;
+					// window.location = `${server.serverUrl}/template/${data.project}`;
+					window.location = `${server.serverUrl}/template`;
 					console.log("data:", data);
 				}
 				else {
