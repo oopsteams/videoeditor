@@ -444,6 +444,7 @@
 						render(T);
 					} else {
 						timeS = timeS + T;
+						patch_render(T);
 						requestAnimationFrame( animate );
 					}
 				}
@@ -566,16 +567,19 @@
 					let canvas = renderer.domElement;
 					if(cswiper.record){
 						cut_canvas(canvas, function(){
-							if(test_tag<120){
+							// if(test_tag<120){
 								requestAnimationFrame( window.animate );
 								test_tag++;
-							}
+							// }
 							
 						});
 					} else {
 						requestAnimationFrame( window.animate );
 					}
 					// requestAnimationFrame( window.animate );
+				}
+				function patch_render(tDelta){
+					cswiper.render(scene, camera, renderer, tDelta);
 				}
 				function render2(){
 					var t = effects.render(scene, camera, renderer);
