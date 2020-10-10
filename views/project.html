@@ -441,7 +441,7 @@
 					if(timeS > renderT){
 						timeS = 0;
 						// video.pause();
-						render();
+						render(T);
 					} else {
 						timeS = timeS + T;
 						requestAnimationFrame( animate );
@@ -556,10 +556,10 @@
 				// ffmpeg -y -r 24 -i ./%04d.png -vcodec libx264 -t 10 0.mp4
 				//////////////////////////////////////////////////////cut canvas end
 				var test_tag = 0;
-				function render(){
+				function render(tDelta){
 					// var t = effects.render(scene, camera, renderer);
 					camera.lookAt( scene.position );
-					cswiper.render(scene, camera, renderer);
+					cswiper.render(scene, camera, renderer, tDelta);
 					renderer.clear();
 					renderer.render( scene, camera );
 					
